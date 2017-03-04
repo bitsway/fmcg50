@@ -30,7 +30,6 @@ var  apipath ='http://127.0.0.1:8000/tkg/medSearch/'
     $(document).ready(function(){
         $.afui.launch();
 		//localStorage.prProdID_Str='';
-		//alert('Local : '+ localStorage.prProdID_Str);
 		
 		localStorage.location_error=''
 		$("#wait_image_login").hide();
@@ -106,7 +105,7 @@ var  apipath ='http://127.0.0.1:8000/tkg/medSearch/'
 		$('#item_combo_id_lv').append(localStorage.product_tbl_str);
 		
 		
-		$("#item_combo_id").val('A')
+		$("#item_combo_id").val('F')
 		searchProduct()
 		//bonusCombo()
 		 page_stock()
@@ -164,7 +163,7 @@ var  apipath ='http://127.0.0.1:8000/tkg/medSearch/'
 		}
 		
 		//================== Redirect to visit page
-		
+		//getOrder_load();
 		else if ((localStorage.doctor_flag==0) &&(localStorage.visit_page=="YES")){
 			$("#sch_date").val(localStorage.scheduled_date);
 			
@@ -1504,9 +1503,9 @@ function check_user() {
 	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	//var  apipath_base_photo_dm ='http://127.0.0.1:8000/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	
+	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+
 	var  apipath_base_photo_dm='http://w02.yeapps.com/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
-
-
 
    //var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
@@ -1526,7 +1525,6 @@ function check_user() {
 	}else{
 		//-----------------
 			
-		//alert(apipath_base_photo_dm);
 		$("#loginButton").hide();
 		$("#doctorButton").hide();
 		$("#wait_image_login").show();
@@ -1696,7 +1694,6 @@ function check_user() {
 													}
 													//	==============Set menu start================\
 												
-												// alert(localStorage.menu);
 												// problem may here in menu
 												var menuList=localStorage.menu.split('<rd>');
 												var menuLength=menuList.length;
@@ -1935,7 +1932,7 @@ function check_user() {
 												
 									$('#item_combo_id_lv').empty()
 									$('#item_combo_id_lv').append(localStorage.product_tbl_str);
-									$("#item_combo_id").val('A')
+									$("#item_combo_id").val('F')
 									searchProduct()
 									
 									
@@ -2006,7 +2003,6 @@ function check_user() {
 										$('#ppm_combo_id_lv').append(localStorage.ppm_tbl_doc);
 									
 									} 
-									
 									localStorage.pr_A=''
 									localStorage.pr_B=''
 									localStorage.pr_C=''
@@ -2037,7 +2033,9 @@ function check_user() {
 									var pr_A=localStorage.prProductStr.split('<AEND>')[0].replace('<ASTART>','');
 									var pr_after_A=localStorage.prProductStr.split('<AEND>')[1]
 									
-								/*
+								/// product show stoped here 
+									/*
+								
 									var pr_B=pr_after_A.split('<BEND>')[0].replace('<BSTART>','');
 									var pr_after_B=pr_after_A.split('<BEND>')[1]
 									
@@ -2111,10 +2109,11 @@ function check_user() {
 									var pr_after_Y=pr_after_X.split('<YEND>')[1]
 									
 									var pr_Z=pr_after_Y.split('<ZEND>')[0].replace('<ZSTART>','');
-									**/
+									*/
 									
 									localStorage.pr_A=pr_A
 									
+									// product show toped here 2
 									/*
 									localStorage.pr_B=pr_B
 									localStorage.pr_C=pr_C
@@ -2141,9 +2140,11 @@ function check_user() {
 									localStorage.pr_X=pr_X
 									localStorage.pr_Y=pr_Y
 									localStorage.pr_Z=pr_Z
+									
 									*/
+									
 									$("#pr_id_lv").empty()
-									setPrProduct()
+									setPrProduct() // go here
 									localStorage.visit_page=""
 									$("#se_mpo").val(localStorage.user_id);
 
@@ -2468,7 +2469,6 @@ function page_pending(){
 	$("#err_pendingTour").show();
 	$("#wait_image_pendingTour").show();
 	
-	alert(localStorage.base_url+'tourPending?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode);
 	$.ajax(localStorage.base_url+'tourPending?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
 								type: 'POST',
 								timeout: 30000,
@@ -4063,8 +4063,7 @@ function marketRetailerNext() {
 	//$("#longitude").val(0);
 	//localStorage.location_detail=''
 	$("#err_m_retailer_next").text("");
-	var visit_client=$("#unscheduled_m_client_combo_id").val();		
-	//alert(visit_client); 	
+	var visit_client=$("#unscheduled_m_client_combo_id").val();			
 	if(visit_client=='' || visit_client==0){
 			$("#err_m_retailer_next").text("Retailer required");
 		}else{
@@ -9497,8 +9496,6 @@ function s_order_detail_report() {
 //
 //        var number = '8801711274122';
 //        var message = 'test';
-//		alert(number);
-//        alert(message);
 //
 //        //CONFIGURATION
 //        var options = {
@@ -9509,8 +9506,6 @@ function s_order_detail_report() {
 //            }
 //        };
 //
-//        var success = function () { alert('Message sent successfully'); };
-//        var error = function (e) { alert('Message Failed:' + e); };
 //        sms.send(number, message, options, success, error);
 //    }
 //};
@@ -10607,7 +10602,7 @@ function getDocppmDataPlan(){
 	}
 
 
-function getDocImage() {
+function getDocImage(){
 	navigator.camera.getPicture( onSuccess_docVisitImage, onFail_docVisitImage, {
 		quality: 90,
 		targetWidth: 400,
@@ -10623,12 +10618,11 @@ function onSuccess_docVisitImage(imageURI) {
 	imagePath = imageURI;
 	$("#docVisitPhoto").val(imagePath);	
 }
+
 function onFail_docVisitImage(message) {
 	imagePath="";
     alert('Failed because: ' + message);
 }
-
-
 
 function getchAddImage() {
 	//navigator.camera.getPicture(onSuccessProfile, onFailProfile, { quality: 10,
@@ -10994,7 +10988,7 @@ function cancelPicture(i){
 
 /*************** jahangirEditedStart20Feb setPrProduct ******************/
 function setPrProduct(){
-	
+		
 		if (localStorage.pr_A.length != '') {
 			pr_A=localStorage.pr_A
 			var prList_A=pr_A.split('<rd>');
@@ -11099,18 +11093,14 @@ function getDocPrData_keyup(product_id, conCatVal, status){
 		
 		//alert (campaign_doc_str.indexOf(pid))
 		if (campaign_doc_str.indexOf(product_id)==-1){
-			//alert(campaign_doc_str.indexOf(pid));
 			if (campaign_doc_str==''){
 				campaign_doc_str=pidConcat
-				//alert(campaign_doc_str);
 			}else{
 				campaign_doc_str=campaign_doc_str+'<rd>'+pidConcat
-				//alert(campaign_doc_str);
 			}
 		}
 		
 		else{
-			//alert(campaign_doc_str.indexOf(pid));
 			campaign_doc_strList=localStorage.prProdID_Str.split('<rd>');
 			campaign_doc_strListLength=campaign_doc_strList.length;
 			for (j=0; j < campaign_doc_strListLength; j++){
@@ -11468,14 +11458,12 @@ function prsearchItem() {
 	//alert ('aaaaaaaaa ')		
 	//var filter = input.value.toUpperCase();
 	var filter  = $("#pritemSearch").val().toUpperCase();
-	//alert(filter.charAt(0));
 	//alert (filter)
 	setPrProductA(filter.charAt(0));
 	//var lis = document.getElementsById('mylist');
 	
 	 var lis =document.getElementById("pr_id_lv").getElementsByTagName("li");
 	//var lis = document.getElementsByTagName('ul>li');
-	//alert(lis.length);
 	for (var i = 0; i < lis.length; i++) {
 		var name = lis[i].getElementsByClassName('name')[0].innerHTML;
 		
@@ -11494,7 +11482,6 @@ function prcancelSearch() {
 	//var lis = document.getElementsById('mylist');
 	 var lis =document.getElementById("pr_id_lv").getElementsByTagName("li");
 	//var lis = document.getElementsByTagName('ul>li');
-	//alert(lis.length);
 	for (var i = 0; i < lis.length; i++) {
 		var name = lis[i].getElementsByClassName('name')[0].innerHTML;
 		
@@ -11515,7 +11502,6 @@ function opsearchItem() {
 	//var lis = document.getElementsById('mylist');
 	 var lis =document.getElementById("op_id_lv").getElementsByTagName("li");
 	//var lis = document.getElementsByTagName('ul>li');
-	//alert(lis.length);
 	for (var i = 0; i < lis.length; i++) {
 		var name = lis[i].getElementsByClassName('name')[0].innerHTML;
 		
@@ -11532,7 +11518,6 @@ function opcancelSearch() {
 	//var lis = document.getElementsById('mylist');
 	 var lis =document.getElementById("op_id_lv").getElementsByTagName("li");
 	//var lis = document.getElementsByTagName('ul>li');
-	//alert(lis.length);
 	for (var i = 0; i < lis.length; i++) {
 		var name = lis[i].getElementsByClassName('name')[0].innerHTML;
 		
@@ -12128,12 +12113,10 @@ function removeCarItemOp(product_idGet){
 	var repl1='';
 	
 	//localStorage.opProdID_Str='';
-	//alert(localStorage.opProdID_Str);
 	iStr=localStorage.opProdID_Str.split('||');
 	iLen=iStr.length
 	for(i=0;i<iLen;i++){
 		iStrD=iStr[i].split('|');
-		//alert(iStrD[0]);
 		if(iStrD[0]!=product_idGet){
 			if (repl1==''){
 				repl1=iStr[i]
@@ -12486,7 +12469,6 @@ function cameraSuccess(uri){
 
 function cameraError(message){
 	var a=''
-    //alert("Canceled!"); 
 	
 }
 
@@ -12499,7 +12481,6 @@ function searchMedicine(){
 		$('#medicineList').html('<p>Type minimum 3 character <span style="color:red;"><sup>*</sup></span></p>');
 	}
 	else{
-		//alert(apipath+'search_medicine?searchValue='+searchValue);
 		$.ajax({
 			  url: apipath+'search_medicine?searchValue='+searchValue,
 			  success: function(resStr) {
@@ -12583,7 +12564,6 @@ function medClickVal2(pid, name){
 /*********** jahangirEditedStart16Feb medClick  *********/
 function medClick2(pid, name){
 	$("#medId"+pid).addClass('bgc');
-	//alert(localStorage.opProdID_Str);
 	var inpVal = $("#inpId"+pid).val();
 	if(inpVal==''||inpVal==undefined){
 		inpVal=0;
