@@ -105,7 +105,7 @@ var  apipath ='http://127.0.0.1:8000/tkg/medSearch/'
 		$('#item_combo_id_lv').append(localStorage.product_tbl_str);
 		
 		
-		//$("#item_combo_id").val('F')
+		$("#item_combo_id").val('F')
 		searchProduct()
 		//bonusCombo()
 		 page_stock()
@@ -1503,11 +1503,9 @@ function check_user() {
 	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	//var  apipath_base_photo_dm ='http://127.0.0.1:8000/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	
-	var  apipath_base_photo_dm='http://w02.yeapps.com/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
-
 	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
-
+	var  apipath_base_photo_dm='http://w02.yeapps.com/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
    //var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
@@ -1926,15 +1924,16 @@ function check_user() {
 									
 									}
 									
-									localStorage.product_tbl_str=product_tbl_order	;
+									localStorage.product_tbl_str=product_tbl_order	;	
+
 									localStorage.product_tbl_str_doc_campaign=product_tbl_doc_campaign;
 									localStorage.product_tbl_str_doc_sample=product_tbl_doc_sample;
 													
 												
 									$('#item_combo_id_lv').empty()
 									$('#item_combo_id_lv').append(localStorage.product_tbl_str);
-									//$("#item_combo_id").val('F') // Go here 5
-									//searchProduct()
+									$("#item_combo_id").val('F')
+									searchProduct()
 									
 									
 									//bonusCombo()
