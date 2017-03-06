@@ -303,14 +303,14 @@ var  apipath ='http://127.0.0.1:8000/tkg/medSearch/'
 			$("#user_id").val(localStorage.user_id);
 			$("#user_pass").val(localStorage.user_pass);
 			if (localStorage.user_type=='sup'){
-			$("#chemisVDiv").hide();
-			$("#chSaveDiv").hide();
+			//$("#chemisVDiv").hide();
+			//$("#chSaveDiv").hide();
 			
 			
 			}
 			else{
-				$("#chemisVDiv").show();
-				$("#chSaveDiv").show();
+				//$("#chemisVDiv").show();
+				//$("#chSaveDiv").show();
 			}
 			//alert (localStorage.synced)
 			$.afui.loadContent("#pageHome",true,true,'right');
@@ -501,12 +501,12 @@ function homePage() {
 	//if ((localStorage.synced=='YES') & (localStorage.sync_date==today)){
 	if (localStorage.synced=='YES'){
 		if (localStorage.user_type=='sup'){
-			$("#chemisVDiv").hide();
-			$("#chSaveDiv").hide();
+			//$("#chemisVDiv").hide();
+			//$("#chSaveDiv").hide();
 		}
 		else{
-			$("#chemisVDiv").show();
-			$("#chSaveDiv").show();
+			//$("#chemisVDiv").show();
+			//$("#chSaveDiv").show();
 		}
 		
 		$.afui.loadContent("#pageHome",true,true,'right');
@@ -1496,7 +1496,6 @@ function afterSync(){
 function check_user() {	
 	var cid=$("#cid").val().toUpperCase();
 	cid=$.trim(cid);
-	
 	//Main
 
 	
@@ -1593,6 +1592,7 @@ function check_user() {
 							
 							//alert (localStorage.base_url+'check_user_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 							$("#error_logintext").val(localStorage.base_url+'check_user_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode);
+							
 							
 							$.ajax(localStorage.base_url+'check_user_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
 								// cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
@@ -2163,12 +2163,12 @@ function check_user() {
 									}
 									checkInbox();
 									if (localStorage.user_type=='sup'){
-										$("#chemisVDiv").hide();
-										$("#chSaveDiv").hide();
+										//$("#chemisVDiv").hide();
+										//$("#chSaveDiv").hide();
 									}
 									else{
-										$("#chemisVDiv").show();
-										$("#chSaveDiv").show();
+										//$("#chemisVDiv").show();
+										//$("#chSaveDiv").show();
 									}
 									$.afui.loadContent("#pageHome",true,true,'right');
 									
@@ -10808,40 +10808,125 @@ function holidaySubmit() {
 }
 
 function chemist_add() {	
+	$('#error_chemist_add_page').html('');
+	$('#outletAdd').show();
 	$(".market").html(localStorage.visit_market_show);
 	document.getElementById('myImagechAdd').src = '';
 	$("#chemist_name").val("");
 	$("#chemist_add").val("");
 	$("#chemist_ph").val("");
+	$("#managerName").val("");
+	$("#managerContactNumber").val("");
 	$.afui.loadContent("#page_chemist_add",true,true,'right');
 }
-function chemist_pending() {	
+
+function chemist_pending() {
+	var marketAreaId = $('#marketAreaId').text();
+	var marketAreaIdSplit = marketAreaId.split('|');
+	//alert(localStorage.base_url+'pendingClientApproval?cid='+localStorage.cid+'&area_id='+marketAreaIdSplit[1]);
+	$.ajax({
+		type: 'POST',
+		url: localStorage.base_url+'pendingClientApproval?cid='+localStorage.cid+'&area_id='+marketAreaIdSplit[1],
+		success: function(result) {
+			var resultArray = result.split('<rd>');
+			
+			var prItemList='';
+			for(i=0; i<resultArray.length; i++){
+				var resultArraySplit = resultArray[i].split('<fd>');
+				//for(j=0; j<resultArraySplit.length; j++){
+					var clientName = resultArraySplit[0];
+					var clientAddress = resultArraySplit[1];
+					var clientContact = resultArraySplit[2];
+					var clientManager = resultArraySplit[3];
+					var clientManagerContact = resultArraySplit[4];
+					var clientId = resultArraySplit[5];
+					var clientAreaId = resultArraySplit[6];
+					var approve = 'approve';
+					var reject = 'reject';
+					prItemList+='<table width="100%"><tr><td><img src="images.png" width="100" height="100" alt="Image" ></td></tr></table><table width="100%"><tr><td >Name <font style="color:#903; font-size:16px"> * </font></td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr><tr><td >Phone <font style="color:#903; font-size:16px"> * </font></td><td >'+resultArraySplit[2]+'</td></tr><tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Contact</td><td >'+resultArraySplit[4]+'</td></tr><tr><td ><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Approve"   /></td><td ><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Reject"   /></td></tr></table>'
+					
+				//}
+				
+			}
+			$('#pendingItemShow').empty();
+			$('#pendingItemShow').append(prItemList);
+		},
+		error: function(result) {			  
+		  $("#error_chemist_cancel_page").html('Network Timeout. Please try again.');		
+		}
+	});
 	$.afui.loadContent("#page_chemist_pending",true,true,'right');
 }
+
+function chemistSubAction(clId,sVal,clArea){
+	alert(localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&client_id='+clId+'&sVal='+sVal+'&area_id='+clArea);
+	$.ajax({
+		type: 'POST',
+		url: localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&area_id='+marketAreaIdSplit[1],
+		success: function(result) {
+			var resultArray = result.split('<rd>');
+			
+			var prItemList='';
+			for(i=0; i<resultArray.length; i++){
+				var resultArraySplit = resultArray[i].split('<fd>');
+				//for(j=0; j<resultArraySplit.length; j++){
+					var clientName = resultArraySplit[0];
+					var clientAddress = resultArraySplit[1];
+					var clientContact = resultArraySplit[2];
+					var clientManager = resultArraySplit[3];
+					var clientManagerContact = resultArraySplit[4];
+					var approve = 'approve';
+					var reject = 'reject';
+					prItemList+='<table width="100%"><tr><td><img src="images.png" width="100" height="100" alt="Image" ></td></tr></table><table width="100%"><tr><td >Name <font style="color:#903; font-size:16px"> * </font></td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr><tr><td >Phone <font style="color:#903; font-size:16px"> * </font></td><td >'+resultArraySplit[2]+'</td></tr><tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Contact</td><td >'+resultArraySplit[4]+'</td></tr><tr><td ><input type="submit"  onClick="chemistSubAction(\'approve\');"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Approve"   /></td><td ><input type="submit"  onClick="chemistSubAction(\'reject\');"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Reject"   /></td></tr></table>'
+					
+				//}
+				
+			}
+			$('#pendingItemShow').empty();
+			$('#pendingItemShow').append(prItemList);
+		},
+		error: function(result) {			  
+		  $("#error_chemist_cancel_page").html('Network Timeout. Please try again.');		
+		}
+	});
+	$.afui.loadContent("#page_chemist_pending",true,true,'right');
+}
+
 function page_businessVolume() {	
 	$.afui.loadContent("#page_businessVolume",true,true,'right');
 }
 function chemist_submit() {	
+	
 	$(".market").html(localStorage.visit_market_show);
 	document.getElementById('myImagechAdd').src = '';
 	var marketId=(localStorage.visit_market_show).split('|')[1]
 	var chemist_name=$("#chemist_name").val();
 	var chemist_add=$("#chemist_add").val();
 	var chemist_ph=$("#chemist_ph").val();
+	var managerName=$("#managerName").val();
+	var managerContactNumber=$("#managerContactNumber").val();
 	
 	if(chemist_ph.length==11){
 		chemist_ph=88+chemist_ph;
 	};
+	
+	if(managerContactNumber.length==11){
+		managerContactNumber=88+managerContactNumber;
+	};
+	
 	var trade_license_no=$("#trade_license_no").val();
 	var vat_registration_no=$("#vat_registration_no").val();
 	var chemist_dob=$("#chemist_dob").val();
 	chemist_name=chemist_name.replace(",","").replace("'","").replace(";","").replace('"','')
 		// ajax-------
-	if ((chemist_name !='') && (chemist_ph !='' )){
-		// ajax-------
+	if ((chemist_name !='') && (chemist_ph !='' ) && (managerName !='' ) && (managerContactNumber !='' )){
+			$('#outletAdd').hide();
+			// go here 5
+		// ajax------- 
+				
 				$.ajax({
 					 type: 'POST',
-					 url: localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&trade_license_no='+encodeURI(trade_license_no)+'&vat_registration_no='+encodeURI(vat_registration_no)+'&chemist_dob='+encodeURI(chemist_dob),
+					 url: localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob),
 					 success: function(result) {
 							if (result==''){
 								$("#error_chemist_add_page").html('Sorry Network not available');
@@ -10850,23 +10935,25 @@ function chemist_submit() {
 								if (resultArray[0]=='FAILED'){						
 									$("#error_chemist_add_page").html(resultArray[1]);								
 								
-								}else if (resultArray[0]=='SUCCESS'){																								
+								}else if (resultArray[0]=='SUCCESS'){
+										
 									$("#error_chemist_add_page").html(resultArray[1]);
 									
 									
 								}else{						
 									$("#error_chemist_add_page").html('Network Timeout. Please try again.');
+									$('#outletAdd').show();
 									}
 							}
 						  },
 					  error: function(result) {			  
-						  $("#error_chemist_add_page").html('Network Timeout. Please try again.');		
+						  $("#error_chemist_add_page").html('Network Timeout. Please try again.');$('#outletAdd').show();		
 					  }
 				 });//end ajax
 	
 	}
 	else{
-		 $("#error_chemist_add_page").html('Name and ph entry must');
+		 $("#error_chemist_add_page").html('The * marked filed entry must');
 	}
 	
 
