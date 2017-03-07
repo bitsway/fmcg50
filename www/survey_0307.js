@@ -328,6 +328,14 @@ var  apipath ='http://127.0.0.1:8000/tkg/medSearch/'
         $.afui.animateHeader(true);
 	//	getLocation()
 
+
+
+
+
+
+
+
+
 var mobile_off_flag=0;
 //function homePage_refresh() {
 //	$("#error_login").html('');
@@ -489,7 +497,7 @@ function homePage() {
 	//alert (parseInt(day))
 	var today=  year + "-" + month + "-" + day
 	localStorage.today=today;						
-	$('#pendingItemShow').empty();
+
 	//if ((localStorage.synced=='YES') & (localStorage.sync_date==today)){
 	if (localStorage.synced=='YES'){
 		if (localStorage.user_type=='sup'){
@@ -584,7 +592,7 @@ function page_inbox() {
 	$("#error_inbox").html('');
 	$("#error_inboxTxt").val(localStorage.report_url+'infoInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode);
 	// ajax-------
-			
+			//alert (localStorage.report_url+'infoInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 			$.ajax(localStorage.report_url+'infoInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
 
 								type: 'POST',
@@ -1492,8 +1500,10 @@ function check_user() {
 
 	
 	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
-	var  apipath_base_photo_dm ='http://w02.yeapps.com/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	//var  apipath_base_photo_dm ='http://127.0.0.1:8000/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	
+	var  apipath_base_photo_dm='http://w02.yeapps.com/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+
 	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
 
@@ -1520,7 +1530,6 @@ function check_user() {
 		$("#doctorButton").hide();
 		$("#wait_image_login").show();
 		$("#error_logintext").val(apipath_base_photo_dm);
-		
 		$.ajax(apipath_base_photo_dm,{
 								cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
 			type: 'POST',
@@ -1543,6 +1552,8 @@ function check_user() {
 						var photo_url=resultArray[1];
 						var photo_submit_url=resultArray[2];
 						var report_url=resultArray[3];
+						
+						
 						//-------------
 						if(base_url=='' || photo_url==''){	
 							$("#wait_image_login").hide();
@@ -1922,7 +1933,7 @@ function check_user() {
 												
 									$('#item_combo_id_lv').empty()
 									$('#item_combo_id_lv').append(localStorage.product_tbl_str);
-									//$("#item_combo_id").val('F') 
+									//$("#item_combo_id").val('F') // Go here 5
 									//searchProduct()
 									
 									
@@ -2134,7 +2145,7 @@ function check_user() {
 									*/
 									
 									$("#pr_id_lv").empty()
-									setPrProduct() 
+									setPrProduct() // go here
 									localStorage.visit_page=""
 									$("#se_mpo").val(localStorage.user_id);
 
@@ -10817,54 +10828,28 @@ function chemist_pending() {
 		type: 'POST',
 		url: localStorage.base_url+'pendingClientApproval?cid='+localStorage.cid+'&area_id='+marketAreaIdSplit[1],
 		success: function(result) {
-			if(result!=''){
-				var resultArray = result.split('<rd>');
+			var resultArray = result.split('<rd>');
+			
+			var prItemList='';
+			for(i=0; i<resultArray.length; i++){
+				var resultArraySplit = resultArray[i].split('<fd>');
+				//for(j=0; j<resultArraySplit.length; j++){
+					var clientName = resultArraySplit[0];
+					var clientAddress = resultArraySplit[1];
+					var clientContact = resultArraySplit[2];
+					var clientManager = resultArraySplit[3];
+					var clientManagerContact = resultArraySplit[4];
+					var clientId = resultArraySplit[5];
+					var clientAreaId = resultArraySplit[6];
+					var approve = 'approve';
+					var reject = 'reject';
+					prItemList+='<table width="100%"><tr><td><img src="images.png" width="100" height="100" alt="Image" ></td></tr></table><table width="100%"><tr><td >Name <font style="color:#903; font-size:16px"> * </font></td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr><tr><td >Phone <font style="color:#903; font-size:16px"> * </font></td><td >'+resultArraySplit[2]+'</td></tr><tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Contact</td><td >'+resultArraySplit[4]+'</td></tr><tr><td ><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Approve"   /></td><td ><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Reject"   /></td></tr></table>'
+					
+				//}
 				
-				var prItemList='';
-				if (localStorage.user_type=='sup'){
-					for(i=0; i<resultArray.length; i++){
-						var resultArraySplit = resultArray[i].split('<fd>');
-						//for(j=0; j<resultArraySplit.length; j++){
-							var clientName = resultArraySplit[0];
-							var clientAddress = resultArraySplit[1];
-							var clientContact = resultArraySplit[2];
-							var clientManager = resultArraySplit[3];
-							var clientManagerContact = resultArraySplit[4];
-							var clientId = resultArraySplit[5];
-							var clientAreaId = resultArraySplit[6];
-							var approve = 'approve';
-							var reject = 'reject';
-							prItemList+='<table width="100%"><tr><td><img src="images.png" width="100" height="100" alt="Image" ></td></tr></table><table width="100%"><tr><td >Name </td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr><tr><td >Phone </td><td >'+resultArraySplit[2]+'</td></tr><tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Contact</td><td >'+resultArraySplit[4]+'</td></tr><tr><td ><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Approve" id="approve'+clientId+'" onclick="chemistSubAction(\''+clientId+'\',\''+approve+'\')"/></td><td ><span id="approveStatus'+clientId+'"></span><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Reject" id="reject'+clientId+'" onclick="chemistSubAction(\''+clientId+'\',\''+reject+'\')" /></td></tr></table>'
-							
-						//} 
-						
-					}
-				}
-				else if(localStorage.user_type=='rep'){
-					for(i=0; i<resultArray.length; i++){
-						var resultArraySplit = resultArray[i].split('<fd>');
-						//for(j=0; j<resultArraySplit.length; j++){
-							var clientName = resultArraySplit[0];
-							var clientAddress = resultArraySplit[1];
-							var clientContact = resultArraySplit[2];
-							var clientManager = resultArraySplit[3];
-							var clientManagerContact = resultArraySplit[4];
-							var clientId = resultArraySplit[5];
-							var clientAreaId = resultArraySplit[6];
-							var approve = 'approve';
-							var reject = 'reject';
-							prItemList+='<table width="100%"><tr><td><img src="images.png" width="100" height="100" alt="Image" ></td></tr></table><table width="100%"><tr><td >Name </td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr><tr><td >Phone </td><td >'+resultArraySplit[2]+'</td></tr><tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Contact</td><td >'+resultArraySplit[4]+'</td></tr></table>'
-							
-						//} 
-						
-					}
-				}
-				$('#pendingItemShow').empty();
-				$('#pendingItemShow').append(prItemList);
 			}
-			else{
-				$('#pendingItemShow').empty();
-			}
+			$('#pendingItemShow').empty();
+			$('#pendingItemShow').append(prItemList);
 		},
 		error: function(result) {			  
 		  $("#error_chemist_cancel_page").html('Network Timeout. Please try again.');		
@@ -10873,30 +10858,38 @@ function chemist_pending() {
 	$.afui.loadContent("#page_chemist_pending",true,true,'right');
 }
 
-function chemistSubAction(clId,sVal){
-	//alert(localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&client_id='+clId+'&sVal='+sVal);
+function chemistSubAction(clId,sVal,clArea){
+	alert(localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&client_id='+clId+'&sVal='+sVal+'&area_id='+clArea);
 	$.ajax({
 		type: 'POST',
-		url: localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&client_id='+clId+'&sVal='+sVal,
+		url: localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&area_id='+marketAreaIdSplit[1],
 		success: function(result) {
-			if(result=='APPROVED'){
-				$('#approve'+clId).hide();
-				$('#reject'+clId).hide();
-				$('#approveStatus'+clId).text('APPROVED');
-				$("#approveStatus"+clId).css({"color": "#0088D1", "font-weight": "bold"});
+			var resultArray = result.split('<rd>');
+			
+			var prItemList='';
+			for(i=0; i<resultArray.length; i++){
+				var resultArraySplit = resultArray[i].split('<fd>');
+				//for(j=0; j<resultArraySplit.length; j++){
+					var clientName = resultArraySplit[0];
+					var clientAddress = resultArraySplit[1];
+					var clientContact = resultArraySplit[2];
+					var clientManager = resultArraySplit[3];
+					var clientManagerContact = resultArraySplit[4];
+					var approve = 'approve';
+					var reject = 'reject';
+					prItemList+='<table width="100%"><tr><td><img src="images.png" width="100" height="100" alt="Image" ></td></tr></table><table width="100%"><tr><td >Name <font style="color:#903; font-size:16px"> * </font></td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr><tr><td >Phone <font style="color:#903; font-size:16px"> * </font></td><td >'+resultArraySplit[2]+'</td></tr><tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Contact</td><td >'+resultArraySplit[4]+'</td></tr><tr><td ><input type="submit"  onClick="chemistSubAction(\'approve\');"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Approve"   /></td><td ><input type="submit"  onClick="chemistSubAction(\'reject\');"   style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Reject"   /></td></tr></table>'
+					
+				//}
+				
 			}
-			else if(result=='CANCELD'){
-				$('#approve'+clId).hide();
-				$('#reject'+clId).hide();
-				$('#approveStatus'+clId).text('CANCELLED');
-				$("#approveStatus"+clId).css({"color": "#940606", "font-weight": "bold"});
-			}
+			$('#pendingItemShow').empty();
+			$('#pendingItemShow').append(prItemList);
 		},
 		error: function(result) {			  
 		  $("#error_chemist_cancel_page").html('Network Timeout. Please try again.');		
 		}
 	});
-	//$.afui.loadContent("#page_chemist_pending",true,true,'right');
+	$.afui.loadContent("#page_chemist_pending",true,true,'right');
 }
 
 function page_businessVolume() {	
@@ -10907,10 +10900,10 @@ function chemist_submit() {
 	$(".market").html(localStorage.visit_market_show);
 	document.getElementById('myImagechAdd').src = '';
 	var marketId=(localStorage.visit_market_show).split('|')[1]
-	var chemist_name=$("#chemist_name").val().replace(/[^a-zA-Z0-9]+/g, ' ');
+	var chemist_name=$("#chemist_name").val();
 	var chemist_add=$("#chemist_add").val();
 	var chemist_ph=$("#chemist_ph").val();
-	var managerName=$("#managerName").val().replace(/[^a-zA-Z0-9]+/g, ' ');
+	var managerName=$("#managerName").val();
 	var managerContactNumber=$("#managerContactNumber").val();
 	
 	if(chemist_ph.length==11){
@@ -10928,7 +10921,7 @@ function chemist_submit() {
 		// ajax-------
 	if ((chemist_name !='') && (chemist_ph !='' ) && (managerName !='' ) && (managerContactNumber !='' )){
 			$('#outletAdd').hide();
-			
+			// go here 5
 		// ajax------- 
 				
 				$.ajax({
@@ -10943,12 +10936,7 @@ function chemist_submit() {
 									$("#error_chemist_add_page").html(resultArray[1]);								
 								
 								}else if (resultArray[0]=='SUCCESS'){
-									$("#chemist_name").val('');
-									$("#chemist_add").val('');
-									$("#chemist_ph").val('');
-									$("#managerName").val('');
-									$("#managerContactNumber").val('');
-									$('#outletAdd').show();
+										
 									$("#error_chemist_add_page").html(resultArray[1]);
 									
 									
@@ -10959,8 +10947,7 @@ function chemist_submit() {
 							}
 						  },
 					  error: function(result) {			  
-						  $("#error_chemist_add_page").html('Network Timeout. Please try again.');
-						  $('#outletAdd').show();		
+						  $("#error_chemist_add_page").html('Network Timeout. Please try again.');$('#outletAdd').show();		
 					  }
 				 });//end ajax
 	
