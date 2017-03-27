@@ -45,6 +45,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		.bgc{
 			color:red;
 		}
+		/********** jahangirEditedStart16Feb css ***************/
 		#imgStyle img{
 			border: 3px solid #ffffff;
 			border-radius: 5px;
@@ -52,27 +53,17 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			height:70px !important;
 		}
 		section { text-align: center; margin: 50px 0 0 0; }
-	    .panzoom-parent { border: 2px solid #333; }
-	    .panzoom-parent .panzoom { border: 2px dashed #666; }
-	    .buttons { margin: 40px 0 0; }
+      .panzoom-parent { border: 2px solid #333; }
+      .panzoom-parent .panzoom { border: 2px dashed #666; }
+      .buttons { margin: 40px 0 0; }
 	  
-		#users ul{margin:50px auto auto auto; padding:0; list-style:none}
-		#users ul li {
+	  #users ul{margin:50px auto auto auto; padding:0; list-style:none}
+	  #users ul li {
 			border-bottom: 1px dashed #0088D1 !important;
 			overflow: hidden;
 			padding: 10px 0px 0px 0px;
 		}
-		#inboxMessage {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-		}	
-		#inboxMessage li {
-			margin: 10px 0;
-			border: 1px dashed #0088D1;
-			border-radius: 6px;
-			padding: 10px 5px;
-		}	
+		/********** jahangirEditedEnd16Feb css ***************/
 	 </style>
 
 </head>
@@ -467,7 +458,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			<input type="hidden" name="lat" id="lat" >
 			<input type="hidden" name="longitude" id="longitude" >
             <!--readonly-->
-
+			<br><br>
             <div id="checkLocation" style="color:#066" hidden=""></div>
             <div align="center"><img id="wait_image_visit_submit" style="" width="50px;" src="loading.gif" alt=""></div>
             <div id="visit_location">
@@ -564,12 +555,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                         <option value="Z" >Z</option>
                 </select>
                 </td>-->
-			<td>
-				<select id="item_combo" style="width:85px; color:#000000" onChange="comboSearch()" >
-				</select>
-			</td>
-            <td>
-                 <input  type="text" id="item_combo_id" name="item_combo_id" style="width:105px; color:#000; font-weight:normal" placeholder="Search Name" onKeyUp="searchProduct()"  />
+                <td>
+                
+                 <input  type="text" id="item_combo_id" name="item_combo_id" style="width:100%; color:#000; font-weight:normal" placeholder="Search by Name" onKeyUp="searchProduct()"  />
             </td>
             <td width="40%"><div id="orderTotalShow" style="color:#FFF" align="center"></div></td>
             <td width="20%" align="right" onClick="getOrderData()" ><img src="icon-arrow-right_1.png" width="30" height="30" alt="Next" >&nbsp;&nbsp;</td> 
@@ -581,8 +569,13 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 <!--<div class="card">-->
                     <!--<h1>Sync</h1>-->
                 
+				
+			
 				<div id="err_order_item" style="color:#C00"></div>
-                  
+                
+            	
+                      
+                
                 <table width="100%" border="0"   >
                 <tr>
                 <td width="90%"  style="vertical-align:top;overflow:scroll; height:700px; display:block">
@@ -2532,7 +2525,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                      <div id="error_inbox" style="color:#C00"></div> 
                     
                 		<div id="inbox" style="color:#2232BD"></div>
-						<!-- go here 8 --->
+
                     </div>
                     
                <!-- </div>-->
@@ -4538,4 +4531,4 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
 </body>
 
-</html>>>>>>>>>>>>>>>>
+</html>>>>>>>>>>>>>>>>>>>

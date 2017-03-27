@@ -583,7 +583,8 @@ function page_login() {
 function page_inbox() {
 	$("#error_inbox").html('');
 	$("#error_inboxTxt").val(localStorage.report_url+'infoInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode);
-	
+	// ajax-------
+			
 			$.ajax(localStorage.report_url+'infoInbox?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode,{
 
 								type: 'POST',
@@ -1491,8 +1492,8 @@ function check_user() {
 
 	
 	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
-	//var  apipath_base_photo_dm ='http://127.0.0.1:8000/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	//var  apipath_base_photo_dm ='http://w02.yeapps.com/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	
 	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
 
@@ -1573,10 +1574,12 @@ function check_user() {
 							var year = currentDate.getFullYear()
 							var today=  year + "-" + month + "-" + day
 							
-							
+							//alert (currentDate)
 							localStorage.sync_date=today;
 							
-							(localStorage.base_url+'check_user_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
+							//alert (localStorage.sync_date)
+							
+							//alert (localStorage.base_url+'check_user_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode)
 							$("#error_logintext").val(localStorage.base_url+'check_user_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode);
 							
 							
@@ -1585,6 +1588,7 @@ function check_user() {
 								type: 'POST',
 								timeout: 30000,
 								error: function(xhr) {
+								//alert ('Error: ' + xhr.status + ' ' + xhr.statusText);
 								$("#wait_image_login").hide();
 								$("#loginButton").show();
 								$("#error_login").html('Network Timeout. Please check your Internet connection..');
@@ -1622,7 +1626,10 @@ function check_user() {
 													localStorage.user_type=resultArray[16];
 													
 													localStorage.market_doctor=resultArray[17];
+													//alert (localStorage.market_doctor)
+													//$("#error_logintext").val(localStorage.market_doctor)
 													localStorage.save_visit_limit=resultArray[18];
+													//alert (localStorage.save_visit_limit)
 													localStorage.visit_location_flag=resultArray[19];
 													
 													localStorage.delivery_date_flag=resultArray[20];
@@ -1644,9 +1651,9 @@ function check_user() {
 													localStorage.marketTourStr=resultArray[32]
 													localStorage.docTThisMonthRow=resultArray[33]
 													localStorage.prProductStr=resultArray[34]
-													localStorage.prProdCatStr=resultArray[35]
 													
 													if (localStorage.visit_location_flag!='YES'){
+														//alert (localStorage.visit_location);
 														$("#visit_location").hide();
 														$("#visit_submit").show();
 														
@@ -1689,7 +1696,8 @@ function check_user() {
 													var single_menu_list = menuList[j].split('<fd>');
 													var s_key=single_menu_list[0]
 													var s_value=single_menu_list[1]
-													if (s_value=='YES'){	
+													if (s_value=='YES'){
+//															 //alert (s_key);	
 															 menu_str=menu_str+'<li  align="center" onClick="'+s_key+'()"  style="width:100%; background-color:#09C; " ><img style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="'+s_key+'.png"></li>'
 															menu_str=menu_str+'<div style="height:2px"></div>'							
 
@@ -1711,10 +1719,12 @@ function check_user() {
 												} //end for
 												menu_str=menu_str;
 												localStorage.menu_list=menu_str;
+												//alert (localStorage.menu_list)
 												$('#menu_lv').empty()
 												$('#menu_lv').append(localStorage.menu_list);
 
 												
+//												alert (localStorage.menu_list);
 												//=============set menu end================
 											//	===================CtStr, Spciality=========
 												
@@ -1756,6 +1766,7 @@ function check_user() {
 														marketID=planMarketID
 														marketName=planMarketName
 														var marketNameID=planMarketName+'|'+planMarketID;
+														//alert (marketNameID);
 														if(planMarketID!=''){
 															unscheduleMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin"><a onClick="marketNextLV(\''+marketNameID+'\')"><font class="name" style="font-size:18; font-weight:bold">'+marketNameID+'</a></font></li>';
 															
@@ -1771,6 +1782,7 @@ function check_user() {
 													localStorage.unschedule_market_cmb_id=unscheduleMarketComb;
 													localStorage.market_cmb_list_cp=profileMarketComb;							
 
+													//alert (localStorage.unschedule_market_cmb_id)
 													$('#market_combo_id_lv').empty();
 													$('#market_combo_id_lv').append(localStorage.unschedule_market_cmb_id);
 													$('#tour_market_combo_id_lv').empty();
@@ -1780,6 +1792,7 @@ function check_user() {
 										
 										//===========Market===========================
 												//------------- Visit Plan Market List / Client Profile Market List / Unschedule
+													//alert (localStorage.marketStrDoc);
 													if (localStorage.marketStrDoc!=''){
 														var docMarketList = localStorage.marketStrDoc.split('<rd>');
 														var docMarketListShowLength=docMarketList.length	
@@ -1789,11 +1802,11 @@ function check_user() {
 														var month = currentDate.getMonth() + 1;if(month<10)	{month="0" +month};
 														var year = currentDate.getFullYear()
 														var CDate=  year + "-" + month + "-" + day
-														
+														//alert (day.length)
 														//var CDate =yyyy+'-'+mm+'-'+dd	
 														var todayFlag=0
 														var tomorrowFlag=0		
-																	
+														//alert (docMarketListShowLength)			
 														for (var k=0; k < docMarketListShowLength; k++){
 															var docMarketValueArray = docMarketList[k].split('<fd>');
 															docMarketID=docMarketValueArray[0];
@@ -1801,8 +1814,8 @@ function check_user() {
 															docMarketDate=docMarketValueArray[2];
 															var docmarketNameID=docMarketName+'|'+docMarketID;
 															
-													
-													
+													//alert (CDate)
+													//alert (docMarketDate)
 													
 															if ((docMarketDate!=CDate) &&(tomorrowFlag==0) && (docMarketDate.length > 5)) {
 																		docMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin;background-color:#EDFBFE"><font  style="font-size:24; font-weight:bold;color:#009">Tomorrow</font></li>';
@@ -1814,7 +1827,7 @@ function check_user() {
 															}
 															if (docMarketID!=''){
 																docMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin"><a onClick="setScheduleDate(\''+docMarketDate+'\');marketNextLV(\''+docmarketNameID+'\');"><font class="name" style="font-size:18; font-weight:bold">'+docMarketName+'</a></font></li>';
-															
+															//alert (docMarketComb)	
 																}
 														}
 														
@@ -1848,7 +1861,7 @@ function check_user() {
 												
 									var productList=localStorage.productListStr.split('<rd>');
 									var productLength=productList.length;
-													
+													//alert (localStorage.productListStr)
 													//------------ Order Item list								
 													
 									if (order_report=="Yes"){
@@ -2063,10 +2076,10 @@ function check_user() {
 									
 									var pr_R=pr_after_Q.split('<REND>')[0].replace('<RSTART>','');
 									var pr_after_R=pr_after_Q.split('<REND>')[1]
-									
+									//alert (pr_after_R)
 									var pr_S=pr_after_R.split('<SEND>')[0].replace('<SSTART>','');
 									var pr_after_S=pr_after_R.split('<SEND>')[1]
-									
+									//alert ('fsdg')
 									var pr_T=pr_after_S.split('<TEND>')[0].replace('<TSTART>','');
 									var pr_after_T=pr_after_S.split('<TEND>')[1]
 									
@@ -2175,6 +2188,7 @@ function check_user() {
 
 function setScheduleDate(scheduleDate){
 	localStorage.scheduled_date=scheduleDate;
+	//alert (localStorage.scheduled_date)
 }
 //=================Bonus Combo==========
 //function bonusCombo(){
@@ -2210,6 +2224,7 @@ function chemist_visit() {
 	addMarketList();
 	localStorage.saved_data_submit=0;
 	localStorage.save_submit=0;
+	//alert ('sadsafdsff')
 	//bonusCombo();
 	
 	$("#addDocanc").hide();
@@ -2983,26 +2998,31 @@ function reports() {
 
 //==================Menu function end=================
 function addMarketList() {
+	//alert (localStorage.unschedule_market_cmb_id);
 	$("#market_combo_id_lv").val('');
 	var unschedule_market_combo_list=localStorage.unschedule_market_cmb_id;
-	
+	//alert (unschedule_market_combo_list)
 	$('#market_combo_id_lv').empty();
 	$('#market_combo_id_lv').append(unschedule_market_combo_list);
 	
 	//$('#market_combo_id_lv').empty();
 //	$('#market_combo_id_lv').append(localStorage.unschedule_market_cmb_id);
+	//alert (unschedule_market_combo_list)
 	$.afui.loadContent("#page_market",true,true,'right');
 
 }
 
 function addMarketListDoctor() {
+	//alert (localStorage.docMarketComb);
 	$("#market_combo_id_lv").val('');
 	var unschedule_market_combo_list=localStorage.docMarketComb;
+	//alert (unschedule_market_combo_list)
 	$('#market_combo_id_lv').empty();
 	$('#market_combo_id_lv').append(unschedule_market_combo_list);
 	
 	//$('#market_combo_id_lv').empty();
 //	$('#market_combo_id_lv').append(localStorage.unschedule_market_cmb_id);
+	//alert (unschedule_market_combo_list)
 	
 	$.afui.loadContent("#page_market",true,true,'right');
 
@@ -4156,16 +4176,7 @@ function getOrder_load(){
 	$("#orderTotalShow").html(localStorage.orderTotal+' TK');
 	
 }
-function getOrder(){
-	// go here 7
-	var itemList = localStorage.prProdCatStr.split('<fd>');
-	var itemLst = '';
-	itemLst+='<option value="" selected="selected">Catagory</option>';
-	for(i=0; i<itemList.length; i++){
-		itemLst+='<option value="'+itemList[i]+'" >'+itemList[i]+'</option>';
-	}
-	$('#item_combo').empty()
-	$('#item_combo').append(itemLst);
+function getOrder(){	
 	$("#order_load").show();
 	//alert (localStorage.product_tbl_str)
 	//$('#item_combo_id_lv').empty()
@@ -4620,6 +4631,7 @@ function cancel_cart() {
 
 //-----VISIT SUBMIT
 function visitSubmit(){	
+	//alert (localStorage.doctor_flag)
 	if (localStorage.doctor_flag==1){
 		visitSubmit_doc();
 	}
@@ -4644,6 +4656,7 @@ function lscVisitSubmit(){
 	$("#errorChkVSubmit").text("");
 	$("#visit_save_div").hide();
 	
+	//alert (localStorage.location_detail)
 	var visitClientId=localStorage.visit_client
 	var visit_type=localStorage.visit_type
 	var scheduled_date=localStorage.scheduled_date
@@ -4786,7 +4799,10 @@ function lscVisitSubmit(){
 														$("#visit_save_div").hide();
 														if (bonus_combo=='YES'){bonus_combo=1;}	else{bonus_combo=0;}
 														var imageName=localStorage.user_id+'_'+now+'.jpg';
+																		//alert (localStorage.productOrderStr);
 																		$("#errorChkVSubmitTxt").val(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&version=p1')
+																		// ajax-------
+																		//alert (localStorage.payment_mode);
 														
 														
 														$.ajax(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&version=p1',{
@@ -8548,14 +8564,13 @@ function searchClient() {
 }
 
 function searchProduct() {
-	// go here 7
 	var filter  = $("#item_combo_id").val().toUpperCase();
-	//alert(filter);
-	var lis =document.getElementById("item_combo_id_lv").getElementsByTagName("li");
-	 
-	/*
+	//alert (filter);
+	 var lis =document.getElementById("item_combo_id_lv").getElementsByTagName("li");
+	
 	for (var i = 0; i < lis.length; i++) {
 		var name = lis[i].getElementsByClassName('name')[0].innerHTML;
+		//alert (name)
 		if (name.toUpperCase().indexOf(filter) == 0)
 			lis[i].style.display = 'list-item';
 		
@@ -8563,19 +8578,7 @@ function searchProduct() {
 			lis[i].style.display = 'none';
 		
 		//$("#item_combo_id_lv").find(lis[0]).first().focus()
-	} 
-	*/
-	for (var i = 0; i < lis.length; i++) {
-		var name = lis[i].getElementsByClassName('name')[0].innerHTML;
-		
-		if (name.match(filter))
-			lis[i].style.display = 'list-item';
-		
-		else
-			lis[i].style.display = 'none';
-		
-		//$("#item_combo_id_lv").find(lis[0]).first().focus()
-	} 
+	}
 	
 	$("#item_codeSearch").val('');
 }
@@ -8846,26 +8849,25 @@ function tr_gift(product_id){
 
 	}	
 function comboSearch(){	
-	// go here 7
-	var filter  = $("#item_combo").val();
-		var lis =document.getElementById("item_combo_id_lv").getElementsByTagName("li");
-		 
-		for (var i = 0; i < lis.length; i++) {
-			var name = lis[i].getElementsByClassName('name')[0].innerHTML;
-			
-			if (name.match(filter))
-				lis[i].style.display = 'list-item';
-			
-			else
-				lis[i].style.display = 'none';
-			
-			//$("#item_combo_id_lv").find(lis[0]).first().focus()
-		} 
-		
-		$("#item_codeSearch").val('');
+	var filter_value=$("#item_combo").val().toUpperCase();
+	//alert (filter_value)
+	$("#item_combo_id").val(filter_value)
+	var filter  = filter_value
+	//alert (filter);
+	 var lis =document.getElementById("item_combo_id_lv").getElementsByTagName("li");
+
+	for (var i = 0; i < lis.length; i++) {
+		var name = lis[i].getElementsByClassName('name')[0].innerHTML;
+		//alert (name)
+		if (name.toUpperCase().indexOf(filter) == 0) 
+			lis[i].style.display = 'list-item';
+		else
+			lis[i].style.display = 'none';
+		$("#item_combo_id_lv").find(lis[0]).first().focus()
+	}
+	$("#item_codeSearch").val('');
 	
-}
-	
+	}	
 function comboSearchOrder(){	
 	$("#item_combo_id").val('A')
 	searchProduct()
