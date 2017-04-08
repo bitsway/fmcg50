@@ -10923,9 +10923,10 @@ function chemist_submit() {
 	var vat_registration_no=$("#vat_registration_no").val();
 	var chemist_dob=$("#chemist_dob").val();
 	chemist_name=chemist_name.replace(",","").replace("'","").replace(";","").replace('"','')
-	alert ('3')
+	
 	var now = $.now();
 	var imageName=localStorage.user_id+'_'+now+'_chemist.jpg';
+	alert ('3')
 	var chPhoto=$("#"+chAddPhoto).val();
 	alert ('4')
 	alert (chemist_name +','+chemist_ph +','+managerName+','+managerContactNumber )
