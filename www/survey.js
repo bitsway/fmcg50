@@ -10928,7 +10928,7 @@ function chemist_submit() {
 	var imageName=localStorage.user_id+'_'+now+'_chemist.jpg';
 	var chPhoto=$("#chAddPhoto").val();
 	//alert ('4')
-	alert (chemist_name +','+chemist_ph +','+managerName+','+managerContactNumber )
+	//alert (chemist_name +','+chemist_ph +','+managerName+','+managerContactNumber )
 		// ajax-------
 	if ((chemist_name !='') && (chemist_ph !='' ) && (managerName !='' ) && (managerContactNumber !='' )){
 			$('#outletAdd').hide();
@@ -12500,7 +12500,7 @@ function uploadPhoto(imageURI, imageName) {
 	
     options.params = params;
 	options.chunkedMode = false;
-	alert (localStorage.photo_submit_url+"fileUploader_docVisit/")
+	//alert (localStorage.photo_submit_url+"fileUploader_docVisit/")
     var ft = new FileTransfer();
      ft.upload(imageURI, encodeURI(localStorage.photo_submit_url+"fileUploader_docVisit/"),winPr,failPr,options);
 	 
