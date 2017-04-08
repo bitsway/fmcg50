@@ -10926,8 +10926,7 @@ function chemist_submit() {
 	
 	var now = $.now();
 	var imageName=localStorage.user_id+'_'+now+'_chemist.jpg';
-	alert ('3')
-	var chPhoto=$("#"+chAddPhoto).val();
+	var chPhoto=$("#chAddPhoto").val();
 	alert ('4')
 	alert (chemist_name +','+chemist_ph +','+managerName+','+managerContactNumber )
 		// ajax-------
