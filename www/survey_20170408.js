@@ -10615,19 +10615,19 @@ function onFail_docVisitImage(message) {
 function getchAddImage() {
 	//navigator.camera.getPicture(onSuccessProfile, onFailProfile, { quality: 10,
 		//destinationType: Camera.DestinationType.FILE_URI });
-   navigator.camera.getPicture(onSuccess_getchAddImage, onFail_getchAddImage, { quality: 90,
+   navigator.camera.getPicture(onSuccess_getDocImage, onFail_getDocImage, { quality: 90,
 		targetWidth: 400,
 		destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
 		
 }
-function onSuccess_getchAddImage(imageURI) {
+function onSuccess_getDocImage(imageURI) {
 	//alert ('Success')
     var image = document.getElementById('myImagechAdd');
     image.src = imageURI;
 	imagePath = imageURI;
 	$("#chAddPhoto").val(imagePath);
 }
-function onFail_getchAddImage(message) {
+function onFail_getDocImage(message) {
 	//alert ('Fail')
 	imagePath="";
     alert('Failed because: ' + message);
@@ -10923,19 +10923,15 @@ function chemist_submit() {
 	var vat_registration_no=$("#vat_registration_no").val();
 	var chemist_dob=$("#chemist_dob").val();
 	chemist_name=chemist_name.replace(",","").replace("'","").replace(";","").replace('"','')
-	var now = $.now();
-	var imageName=localStorage.user_id+'_'+now+'_chemist.jpg';
-	var chPhoto=$("#"+chAddPhoto).val();
 		// ajax-------
 	if ((chemist_name !='') && (chemist_ph !='' ) && (managerName !='' ) && (managerContactNumber !='' )){
 			$('#outletAdd').hide();
 			
 		// ajax------- 
-				alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName)
 				
 				$.ajax({
 					 type: 'POST',
-					 url: localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName,
+					 url: localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob),
 					 success: function(result) {
 							if (result==''){
 								$("#error_chemist_add_page").html('Sorry Network not available');
@@ -10945,7 +10941,6 @@ function chemist_submit() {
 									$("#error_chemist_add_page").html(resultArray[1]);								
 								
 								}else if (resultArray[0]=='SUCCESS'){
-									uploadPhoto(chPhoto, imageName);
 									$("#chemist_name").val('');
 									$("#chemist_add").val('');
 									$("#chemist_ph").val('');
