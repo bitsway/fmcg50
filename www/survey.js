@@ -10910,7 +10910,7 @@ function chemist_submit() {
 	var chemist_ph=$("#chemist_ph").val();
 	var managerName=$("#managerName").val().replace(/[^a-zA-Z0-9]+/g, ' ');
 	var managerContactNumber=$("#managerContactNumber").val();
-	
+	alert ('1')
 	if(chemist_ph.length==11){
 		chemist_ph=88+chemist_ph;
 	};
@@ -10918,11 +10918,12 @@ function chemist_submit() {
 	if(managerContactNumber.length==11){
 		managerContactNumber=88+managerContactNumber;
 	};
-	
+	alert ('2')
 	var trade_license_no=$("#trade_license_no").val();
 	var vat_registration_no=$("#vat_registration_no").val();
 	var chemist_dob=$("#chemist_dob").val();
 	chemist_name=chemist_name.replace(",","").replace("'","").replace(";","").replace('"','')
+	alert ('3')
 	var now = $.now();
 	var imageName=localStorage.user_id+'_'+now+'_chemist.jpg';
 	var chPhoto=$("#"+chAddPhoto).val();
