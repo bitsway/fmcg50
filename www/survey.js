@@ -10927,14 +10927,14 @@ function chemist_submit() {
 	var now = $.now();
 	var imageName=localStorage.user_id+'_'+now+'_chemist.jpg';
 	var chPhoto=$("#chAddPhoto").val();
-	alert ('4')
+	//alert ('4')
 	alert (chemist_name +','+chemist_ph +','+managerName+','+managerContactNumber )
 		// ajax-------
 	if ((chemist_name !='') && (chemist_ph !='' ) && (managerName !='' ) && (managerContactNumber !='' )){
 			$('#outletAdd').hide();
 			
 		// ajax------- 
-				alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName)
+				//alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName)
 				
 				$.ajax({
 					 type: 'POST',
@@ -12502,7 +12502,7 @@ function uploadPhoto(imageURI, imageName) {
 	options.chunkedMode = false;
 	
     var ft = new FileTransfer();
-     ft.upload(imageURI, encodeURI(localStorage.photo_submit_url+"fileUploaderPrescription/"),winPr,failPr,options);
+     ft.upload(imageURI, encodeURI(localStorage.photo_submit_url+"fileUploader_docVisit/"),winPr,failPr,options);
 	 
 }
 
