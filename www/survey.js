@@ -4712,6 +4712,9 @@ function lscVisitSubmit(){
 	if (localStorage.delivery_date_flag!='YES'){
 		delivery_date=today_1;
 	}
+	if (productOrderStr==''){
+		delivery_date=today_1;
+	}
 	//else{
 //		$("#errorChkVSubmit").html('Please enter delivery date');
 //		$("#visit_save_div").show();
@@ -8483,7 +8486,12 @@ function clearsearchPendingRep(){
 	searchPendingRep()
 	
 }
-
+function clearSearchDoctor(){
+	$("#unscheduled_m_client_combo_id").val("")
+	$("#unscheduled_m_client_combo_id").focus()
+	searchClient()
+	
+}
 //===========
 function searchPendingR() {
 	var filter  = $("#tour_pending_combo_id").val().toUpperCase();
