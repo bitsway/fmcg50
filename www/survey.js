@@ -4160,7 +4160,7 @@ function getOrder(){
 	// go here 7
 	var itemList = localStorage.prProdCatStr.split('<fd>');
 	var itemLst = '';
-	itemLst+='<option value="" selected="selected">Catagory</option>';
+	itemLst+='<option value="" selected="selected">Category</option>';
 	for(i=0; i<itemList.length; i++){
 		itemLst+='<option value="'+itemList[i]+'" >'+itemList[i]+'</option>';
 	}
