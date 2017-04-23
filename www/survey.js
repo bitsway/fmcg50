@@ -11067,7 +11067,7 @@ function chemist_submit() {
 								$("#wait_image_ch").hide();							
 								
 								}else if (resultArray[0]=='SUCCESS'){
-									//uploadPhoto(chPhoto, imageName);
+									uploadPhoto(chPhoto, imageName);
 									$("#chemist_name").val('');
 									$("#chemist_add").val('');
 									$("#chemist_ph").val('');
