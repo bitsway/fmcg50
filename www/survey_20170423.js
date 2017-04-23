@@ -1645,8 +1645,6 @@ function check_user() {
 													localStorage.docTThisMonthRow=resultArray[33]
 													localStorage.prProductStr=resultArray[34]
 													localStorage.prProdCatStr=resultArray[35]
-													localStorage.clCatStr=resultArray[36]
-													localStorage.clCatSubStr=resultArray[37]
 													
 													if (localStorage.visit_location_flag!='YES'){
 														$("#visit_location").hide();
@@ -1718,8 +1716,6 @@ function check_user() {
 
 												
 												//=============set menu end================
-												
-											
 											//	===================CtStr, Spciality=========
 												
 												var dCategory=localStorage.catStr											
@@ -10817,27 +10813,6 @@ function chemist_add() {
 	$("#chemist_ph").val("");
 	$("#managerName").val("");
 	$("#managerContactNumber").val("");
-	$("#propiterName").val("");
-	//  ==================Client =================
-											
-	//alert (localStorage.clCatSubStr)
-	var cCategory=localStorage.clCatStr											
-	cCategoryList=cCategory.split('<rd>')
-	$('#clClient').empty();
-	$('#clClient').append('<option value="">Category</option>');
-	for (var j=0; j < cCategoryList.length-1; j++){
-		var clOpt='<option value="'+cCategoryList[j]+'">'+cCategoryList[j]+'</option>'
-		 $('#clClient').append(clOpt);
-	}
-	
-	var cSubCategory=localStorage.clCatSubStr											
-	clCatSubList=cSubCategory.split('<rd>')
-	$('#clSubClient').empty();
-	$('#clSubClient').append('<option value="">Sub Category</option>');
-	for (var j=0; j < clCatSubList.length-1; j++){
-		var clSOpt='<option value="'+clCatSubList[j]+'">'+clCatSubList[j]+'</option>'
-		 $('#clSubClient').append(clSOpt);
-	}
 	$.afui.loadContent("#page_chemist_add",true,true,'right');
 }
 
@@ -10864,63 +10839,11 @@ function chemist_pending() {
 							var clientManagerContact = resultArraySplit[4];
 							var clientId = resultArraySplit[5];
 							var clientAreaId = resultArraySplit[6];
-							var category_id = resultArraySplit[7];
-							var category_name = resultArraySplit[8];
-							var sub_category_id = resultArraySplit[9];
-							var sub_category_name = resultArraySplit[10];
-							var owner_name = resultArraySplit[11];
-							var category=''
-							var subCategory=''
-							if (category_id!=''){
-								category=category_id+'|'+category_name
-							}
-							if (subCategory!=''){
-							  subCategory=sub_category_id+'|'+sub_category_name
-							}
 							//var imageName = resultArraySplit[7];
-							//alert (resultArraySplit[1])
+							//alert (imageName)
 							var approve = 'approve';
 							var reject = 'reject';
-							var clName=clientId+'_clName'
-							var clAdd=clientId+'_clAdd'
-							var clPphone=clientId+'_clPphone'
-							var clMname=clientId+'_clMname'
-							var clMphone=clientId+'_clMphone'
-							var ownerName=clientId+'_ownerName'
-							var clCat=clientId+'_clCat'
-							var clSubCat=clientId+'_clSubCat'
-							
-							var ctStr='<select name="'+clCat+'" id="'+clCat+'" >'
-							var cCategory=localStorage.clCatStr											
-							cCategoryList=cCategory.split('<rd>')
-							ctStr=ctStr+'<option value="'+category+'">'+category+'</option>'
-							for (var j=0; j < cCategoryList.length-1; j++){
-								ctStr=ctStr+'<option value="'+cCategoryList[j]+'">'+cCategoryList[j]+'</option>'
-							}
-							ctStr=ctStr+'</select>'
-							
-							var ctSubStr='<select name="'+clSubCat+'" id="'+clSubCat+'" >'
-							var cSubCategory=localStorage.clCatSubStr											
-							clCatSubList=cSubCategory.split('<rd>')
-							ctSubStr=ctSubStr+'<option value="'+subCategory+'">'+subCategory+'</option>'
-							for (var j=0; j < clCatSubList.length-1; j++){
-								ctSubStr=ctSubStr+'<option value="'+clCatSubList[j]+'">'+clCatSubList[j]+'</option>'
-							}
-							ctSubStr=ctSubStr+'</select>'
-							
-							
-							prItemList=prItemList+'<table width="100%">'
-							prItemList=prItemList+'<tr><td >Outlet Name </td><td ><input type="text" id="'+clName+'" name="'+clName+'"  value="'+resultArraySplit[0]+'"/></td></tr>'
-							prItemList=prItemList+'<tr><td >Address</td><td ><input type="text" id="'+clAdd+'" name="'+clAdd+'" value="'+resultArraySplit[1]+'"/></td></tr>'
-							prItemList=prItemList+'<tr><td >Proprietor/Owner Name</td><td ><input type="text" id="'+ownerName+'" name="'+ownerName+'" value="'+resultArraySplit[11]+'"/></td></tr>'
-							prItemList=prItemList+'<tr><td >Proprietor/Owner Phone Number </td><td ><input type="text" id="'+clPphone+'" name="'+clPphone+'" value="'+resultArraySplit[2]+'"/></td></tr><tr><td >Manager Name</td><td ><input type="text" id="'+clMname+'" name="'+clMname+'" value="'+resultArraySplit[3]+'"/></td></tr>'
-							prItemList=prItemList+'<tr><td >Manager Contact Number</td><td ><input type="text" id="'+clMphone+'" name="'+clMphone+'"  value="'+resultArraySplit[4]+'"/></td></tr>'
-							prItemList=prItemList+'<tr><td >Category</td><td >'+ctStr+'</td></tr>'
-							prItemList=prItemList+'<tr><td >Sub Category</td><td >'+ctSubStr+'</td></tr>'
-							
-							prItemList=prItemList+'<tr><td ><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Approve" id="approve'+clientId+'" onclick="chemistSubAction(\''+clientId+'\',\''+approve+'\')"/></td><td ><span id="approveStatus'+clientId+'"></span><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Reject" id="reject'+clientId+'" onclick="chemistSubAction(\''+clientId+'\',\''+reject+'\')" /></td></tr></table>'
-							
-							
+							prItemList+='<table width="100%"><tr><td></td></tr></table><table width="100%"><tr><td >Name </td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr><tr><td >Phone </td><td >'+resultArraySplit[2]+'</td></tr><tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Contact</td><td >'+resultArraySplit[4]+'</td></tr><tr><td ><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Approve" id="approve'+clientId+'" onclick="chemistSubAction(\''+clientId+'\',\''+approve+'\')"/></td><td ><span id="approveStatus'+clientId+'"></span><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Reject" id="reject'+clientId+'" onclick="chemistSubAction(\''+clientId+'\',\''+reject+'\')" /></td></tr></table>'
 							/*prItemList+='<table width="100%"><tr><td><img src="'+photo_url+'static/tkg_pic/'+imageName+'" alt="NPD" />" width="100" height="100" alt="Image" ></td></tr></table><table width="100%"><tr><td >Name </td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr><tr><td >Phone </td><td >'+resultArraySplit[2]+'</td></tr><tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Contact</td><td >'+resultArraySplit[4]+'</td></tr><tr><td ><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Approve" id="approve'+clientId+'" onclick="chemistSubAction(\''+clientId+'\',\''+approve+'\')"/></td><td ><span id="approveStatus'+clientId+'"></span><input type="submit" style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="Reject" id="reject'+clientId+'" onclick="chemistSubAction(\''+clientId+'\',\''+reject+'\')" /></td></tr></table>'*/
 							
 						//} 
@@ -10938,18 +10861,9 @@ function chemist_pending() {
 							var clientManagerContact = resultArraySplit[4];
 							var clientId = resultArraySplit[5];
 							var clientAreaId = resultArraySplit[6];
-							var category_id = resultArraySplit[7];
-							var category_name = resultArraySplit[8];
-							var sub_category_id = resultArraySplit[9];
-							var sub_category_name = resultArraySplit[10];
-							var owner_name = resultArraySplit[11];
-							var category=category_id+'|'+category_name
-							var subCategory=sub_category_id+'|'+sub_category_name
 							var approve = 'approve';
 							var reject = 'reject';
-							prItemList+='<table width="100%"><tr><td >Outlet Name </td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr>'
-							prItemList+='<tr><td >Proprietor/Owner Name </td><td >'+owner_name+'</td></tr><tr><td Proprietor/Owner Phone Number</td><td >'+resultArraySplit[2]+'</td></tr>'
-							prItemList+='<tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Phone Number</td><td >'+resultArraySplit[4]+'</td></tr> <tr><td> Category</td><td >'+category+'</td></tr><tr><td >SubCategory</td><td >'+subCategory+'</td></tr></table>'
+							prItemList+='<table width="100%"><tr><td><img src="images.png" width="100" height="100" alt="Image" ></td></tr></table><table width="100%"><tr><td >Name </td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr><tr><td >Phone </td><td >'+resultArraySplit[2]+'</td></tr><tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Contact</td><td >'+resultArraySplit[4]+'</td></tr></table>'
 							
 						//} 
 						
@@ -10970,22 +10884,11 @@ function chemist_pending() {
 }
 
 function chemistSubAction(clId,sVal){
-	clName=$('#'+clId+'_clName').val()
-	clAdd=$('#'+clId+'_clAdd').val()
-	clPphone=$('#'+clId+'_clPphone').val()
-	clMname=$('#'+clId+'_clMname').val()
-	clMphone=$('#'+clId+'_clMphone').val()
-	ownerName=$('#'+clId+'_ownerName').val()
-	clCat=$('#'+clId+'_clCat').val()
-	clSubCat=$('#'+clId+'_clSubCat').val()
-
-	
-	//alert(localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&client_id='+clId+'&sVal='+sVal+'&clName='+clName+'&clAdd='+clAdd+'&clPphone='+clPphone+'&clMname='+clMname+'&clMphone='+clMphone+'&ownerName='+ownerName+'&clCat='+clCat+'&clSubCat='+clSubCat);
+	//alert(localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&client_id='+clId+'&sVal='+sVal);
 	$.ajax({
 		type: 'POST',
-		url: localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&client_id='+clId+'&sVal='+sVal+'&clName='+clName+'&clAdd='+clAdd+'&clPphone='+clPphone+'&clMname='+clMname+'&clMphone='+clMphone+'&ownerName='+ownerName+'&clCat='+clCat+'&clSubCat='+clSubCat,
+		url: localStorage.base_url+'pendingClientApprovalUpdate?cid='+localStorage.cid+'&client_id='+clId+'&sVal='+sVal,
 		success: function(result) {
-			//alert (result)
 			if(result=='APPROVED'){
 				$('#approve'+clId).hide();
 				$('#reject'+clId).hide();
@@ -11016,13 +10919,10 @@ function chemist_submit() {
 	document.getElementById('myImagechAdd').src = '';
 	var marketId=(localStorage.visit_market_show).split('|')[1]
 	var chemist_name=$("#chemist_name").val().replace(/[^a-zA-Z0-9]+/g, ' ');
-	var propiterName=$("#propiterName").val().replace(/[^a-zA-Z0-9]+/g, ' ');
 	var chemist_add=$("#chemist_add").val();
 	var chemist_ph=$("#chemist_ph").val();
 	var managerName=$("#managerName").val().replace(/[^a-zA-Z0-9]+/g, ' ');
 	var managerContactNumber=$("#managerContactNumber").val();
-	var clClient=$("#clClient").val();
-	var clSubClient=$("#clSubClient").val();
 	
 	if(chemist_ph.length==11){
 		chemist_ph=88+chemist_ph;
@@ -11043,17 +10943,17 @@ function chemist_submit() {
 	//alert ('4')
 	//alert (chemist_name +','+chemist_ph +','+managerName+','+managerContactNumber )
 		// ajax-------
-	if ((chemist_name !='') && (chemist_ph !='' ) && (managerName !='' ) && (managerContactNumber !='' ) && (propiterName!='')){
+	if ((chemist_name !='') && (chemist_ph !='' ) && (managerName !='' ) && (managerContactNumber !='' )){
 			$('#outletAdd').hide();
 			$("#wait_image_ch").show();
 	
 			
 		// ajax------- 
-			//	alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName+'&propiterName='+encodeURI(propiterName)+'&clClient='+encodeURI(clClient)+'&clSubClient='+encodeURI(clSubClient))
+				//alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName)
 				
 				$.ajax({
 					 type: 'POST',
-					 url: localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName+'&propiterName='+encodeURI(propiterName)+'&clClient='+encodeURI(clClient)+'&clSubClient='+encodeURI(clSubClient),
+					 url: localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName,
 					 success: function(result) {
 							if (result==''){
 								$("#error_chemist_add_page").html('Sorry Network not available');
@@ -11067,7 +10967,7 @@ function chemist_submit() {
 								$("#wait_image_ch").hide();							
 								
 								}else if (resultArray[0]=='SUCCESS'){
-									//uploadPhoto(chPhoto, imageName);
+									uploadPhoto(chPhoto, imageName);
 									$("#chemist_name").val('');
 									$("#chemist_add").val('');
 									$("#chemist_ph").val('');
