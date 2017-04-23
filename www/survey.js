@@ -11073,6 +11073,7 @@ function chemist_submit() {
 									$("#chemist_ph").val('');
 									$("#managerName").val('');
 									$("#managerContactNumber").val('');
+									$("#propiterName").val('');
 									//$('#outletAdd').show();
 									$("#error_chemist_add_page").html(resultArray[1]);
 									$('#outletAdd').show();
