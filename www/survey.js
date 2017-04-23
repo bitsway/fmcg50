@@ -10948,8 +10948,8 @@ function chemist_pending() {
 							var approve = 'approve';
 							var reject = 'reject';
 							prItemList+='<table width="100%"><tr><td >Outlet Name </td><td >'+resultArraySplit[0]+'</td></tr><tr><td >Address</td><td >'+resultArraySplit[1]+'</td></tr>'
-							prItemList+='<tr><td >Proprietor/Owner Name </td><td >'+owner_name+'</td></tr><tr><td Proprietor/Owner Phone Number</td><td >'+resultArraySplit[2]+'</td></tr>'
-							prItemList+='<tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Phone Number</td><td >'+resultArraySplit[4]+'</td></tr> <tr><td> Category</td><td >'+category+'</td></tr><tr><td >SubCategory</td><td >'+subCategory+'</td></tr></table>'
+							prItemList+='<tr><td >Proprietor/Owner Name </td><td >'+owner_name+'</td></tr><tr><td >Proprietor/Owner Phone Number</td><td >'+resultArraySplit[2]+'</td></tr>'
+							prItemList+='<tr><td >Manager Name</td><td >'+resultArraySplit[3]+'</td></tr><tr><td >Manager Phone Number</td><td >'+resultArraySplit[4]+'</td></tr> <tr><td> Category</td><td >'+category+'</td></tr><tr><td >SubCategory</td><td >'+subCategory+'</td></tr></table></br></br>'
 							
 						//} 
 						
