@@ -10874,7 +10874,7 @@ function chemist_pending() {
 							if (category_id!=''){
 								category=category_id+'|'+category_name
 							}
-							if (subCategory!=''){
+							if (sub_category_id!=''){
 							  subCategory=sub_category_id+'|'+sub_category_name
 							}
 							//var imageName = resultArraySplit[7];
