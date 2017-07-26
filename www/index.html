@@ -430,7 +430,19 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					</tr>
 				</table>
 	<div id="order_total_show" style=" color:#009191; font-weight:bold"></div>
-                <input name="chemist_feedback" id="chemist_feedback" type="text" maxlength="100" placeholder="Note">
+                <!--<input name="chemist_feedback" id="chemist_feedback" type="text" maxlength="100" placeholder="Note">-->
+                <select name="chemist_feedback" id="chemist_feedback"  >
+                  <option value="" selected="selected"></option>
+                  <option value="Shop Closed" >Shop Closed</option>
+                  <option value="Owner Absent" >Owner Absent</option>
+                  <option value="Stock Available" >Stock Available</option>
+                  <option value="Adjustment Issue" >Adjustment Issue</option>
+                  <option value="Credit Issue" >Credit Issue</option>
+                  <option value="No Product Demand" >No Product Demand</option>
+                </select>      
+                
+                
+                
                 <br/>
                 <input name="errorChkVSubmitTxt" id="errorChkVSubmitTxt"   type="hidden">
                 <div id="errorChkVSubmit_1" style="color:#C00"></div>
@@ -4566,4 +4578,4 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
 </body>
 
-</html>
+</html>>>
