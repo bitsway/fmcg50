@@ -10846,7 +10846,7 @@ function chemist_add() {
 	var clTypeL='<table width="500px"><tr>'
 	for (var j=0; j < clTypeList.length-1; j++){
 		var clientTypeID="clientType"+j
-		var clTypeL=clTypeL+'<td><input class="docCampaign" type="checkbox" name="'+clientTypeID+'" value="'+clTypeList[j]+'" id="'+clientTypeID+'"><label for="'+clientTypeID+'">'+clTypeList[j]+'</label></td>';
+		var clTypeL=clTypeL+'<td><input class="docCampaign" type="checkbox" name="'+clientTypeID+'" value="'+clTypeList[j]+'" id="'+clientTypeID+'"><label for="'+clientTypeID+'">'+clTypeList[j]+'&nbsp;&nbsp;</label></td>';
 		 
 	}
 	clTypeL=clTypeL+'</tr></table>'
@@ -10858,7 +10858,7 @@ function chemist_add() {
 	var clientCatL='<table width="500px"><tr>'
 	for (var j=0; j < clientCatList.length-1; j++){
 		var clientCatID="clientCat"+j
-		var clientCatL=clientCatL+'<td><input class="docCampaign" type="checkbox" name="'+clientCatID+'" value="'+clientCatList[j]+'" id="'+clientCatID+'"><label for="'+clientCatID+'">'+clientCatList[j]+'</label></td>';
+		var clientCatL=clientCatL+'<td><input class="docCampaign" type="checkbox" name="'+clientCatID+'" value="'+clientCatList[j]+'" id="'+clientCatID+'"><label for="'+clientCatID+'">'+clientCatList[j]+'&nbsp;&nbsp;</label></td>';
 		 
 	}
 	clientCatL=clientCatL+'</tr></table>'
