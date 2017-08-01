@@ -302,24 +302,24 @@ var  apipath ='http://127.0.0.1:8000/tkg/medSearch/'
 			$("#cid").val(localStorage.cid);
 			$("#user_id").val(localStorage.user_id);
 			$("#user_pass").val(localStorage.user_pass);
-			//if (localStorage.user_type=='sup'){
+			if (localStorage.user_type=='sup'){
 			//$("#chemisVDiv").hide();
 			//$("#chSaveDiv").hide();
 			
 			
-			//}
-			//else{
+			}
+			else{
 				//$("#chemisVDiv").show();
 				//$("#chSaveDiv").show();
-			//}
+			}
 			//alert (localStorage.synced)
-			//$.afui.loadContent("#pageHome",true,true,'right');
+			$.afui.loadContent("#pageHome",true,true,'right');
 			
 		}
-		if ((localStorage.synced=='YES') & (localStorage.sync_date==today)){
+		//if ((localStorage.synced=='YES') & (localStorage.sync_date==today)){
 		//if (localStorage.synced=='YES') {
-			$.afui.loadContent("#pageHome",true,true,'right');
-		}
+//			$.afui.loadContent("#pageHome",true,true,'right');
+//		}
 		
 		
     });
@@ -1490,14 +1490,14 @@ function check_user() {
 	//Main
 
 	
-	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new_TKG/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	//var  apipath_base_photo_dm='http://127.0.0.1:8000/demo/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	//var  apipath_base_photo_dm ='http://127.0.0.1:8000/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
-	var  apipath_base_photo_dm ='http://w02.yeapps.com/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
+	//var  apipath_base_photo_dm ='http://w02.yeapps.com/tkg/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 	//var  apipath_base_photo_dm='http://a007.yeapps.com/acme/syncmobile_417_new/dmpath?CID='+cid +'&HTTPPASS=e99business321cba'
 
 
 
- //  var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
+   var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
 	
 	var user_id=$("#user_id").val();
@@ -1647,8 +1647,6 @@ function check_user() {
 													localStorage.prProdCatStr=resultArray[35]
 													localStorage.clCatStr=resultArray[36]
 													localStorage.clCatSubStr=resultArray[37]
-													localStorage.clTypeStr=resultArray[38]
-													localStorage.clientCatList=resultArray[39]
 													
 													if (localStorage.visit_location_flag!='YES'){
 														$("#visit_location").hide();
@@ -10840,31 +10838,6 @@ function chemist_add() {
 		var clSOpt='<option value="'+clCatSubList[j]+'">'+clCatSubList[j]+'</option>'
 		 $('#clSubClient').append(clSOpt);
 	}
-	
-	var clType=localStorage.clTypeStr											
-	clTypeList=clType.split('<fd>')
-	var clTypeL='<table width="500px"><tr>'
-	for (var j=0; j < clTypeList.length-1; j++){
-		var clientTypeID="clientType"+j
-		var clTypeL=clTypeL+'<td><input class="docCampaign" type="checkbox" name="'+clientTypeID+'" value="'+clTypeList[j]+'" id="'+clientTypeID+'"><label for="'+clientTypeID+'">'+clTypeList[j]+'</label></td>';
-		 
-	}
-	clTypeL=clTypeL+'</tr></table>'
-	$('#clType').empty();
-	$('#clType').html(clTypeL);
-	
-	var clientCat=localStorage.clientCatList											
-	clientCatList=clientCat.split('<fd>')
-	var clientCatL='<table width="500px"><tr>'
-	for (var j=0; j < clientCatList.length-1; j++){
-		var clientCatID="clientCat"+j
-		var clientCatL=clientCatL+'<td><input class="docCampaign" type="checkbox" name="'+clientCatID+'" value="'+clientCatList[j]+'" id="'+clientCatID+'"><label for="'+clientCatID+'">'+clientCatList[j]+'</label></td>';
-		 
-	}
-	clientCatL=clientCatL+'</tr></table>'
-	$('#clCategory').empty();
-	$('#clCategory').html(clientCatL);
-	
 	$.afui.loadContent("#page_chemist_add",true,true,'right');
 }
 
@@ -11051,9 +11024,6 @@ function chemist_submit() {
 	var clClient=$("#clClient").val();
 	var clSubClient=$("#clSubClient").val();
 	
-	
-	
-	
 	if(chemist_ph.length==11){
 		chemist_ph=88+chemist_ph;
 	};
@@ -11072,35 +11042,6 @@ function chemist_submit() {
 	var chPhoto=$("#chAddPhoto").val();
 	//alert ('4')
 	//alert (chemist_name +','+chemist_ph +','+managerName+','+managerContactNumber )
-	//============
-	var clType=localStorage.clTypeStr											
-	clTypeList=clType.split('<fd>')
-	var clTypeL=''
-	for (var j=0; j < clTypeList.length-1; j++){
-		var clientTypeID="clientType"+j
-		var check_valT=$("input[name='"+clientTypeID+"']:checked").val();
-		if ((check_valT!='undefined') && (check_valT!=undefined)){
-			if (clTypeL==''){clTypeL=check_valT}else{clTypeL=clTypeL+','+check_valT}
-		
-		}
-		 
-	}
-
-	
-	var clientCat=localStorage.clientCatList											
-	clientCatList=clientCat.split('<fd>')
-	var clientCatL=''
-	
-	for (var j=0; j < clientCatList.length-1; j++){
-		var clientCatID="clientCat"+j
-		var check_val=$("input[name='"+clientCatID+"']:checked").val();
-		if ((check_val!='undefined') && (check_val!=undefined)){
-			if (clientCatL==''){clientCatL=check_val}else{clientCatL=clientCatL+','+check_val}
-		
-		}
-	}
-	
-	//=============
 		// ajax-------
 	if ((chemist_name !='') && (chemist_ph !='' ) && (managerName !='' ) && (managerContactNumber !='' ) && (propiterName!='')){
 			$('#outletAdd').hide();
@@ -11108,11 +11049,11 @@ function chemist_submit() {
 	
 			
 		// ajax------- 
-				alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName+'&propiterName='+encodeURI(propiterName)+'&clClient='+encodeURI(clClient)+'&clSubClient='+encodeURI(clSubClient)+'&clTypeL='+encodeURI(clTypeL)+'&clientCatL='+encodeURI(clientCatL))
+			//	alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName+'&propiterName='+encodeURI(propiterName)+'&clClient='+encodeURI(clClient)+'&clSubClient='+encodeURI(clSubClient))
 				
 				$.ajax({
 					 type: 'POST',
-					 url: localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName+'&propiterName='+encodeURI(propiterName)+'&clClient='+encodeURI(clClient)+'&clSubClient='+encodeURI(clSubClient)+'&clTypeL='+encodeURI(clTypeL)+'&clientCatL='+encodeURI(clientCatL),
+					 url: localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName+'&propiterName='+encodeURI(propiterName)+'&clClient='+encodeURI(clClient)+'&clSubClient='+encodeURI(clSubClient),
 					 success: function(result) {
 							if (result==''){
 								$("#error_chemist_add_page").html('Sorry Network not available');
