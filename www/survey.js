@@ -10826,7 +10826,7 @@ function chemist_add() {
 	var cCategory=localStorage.clCatStr											
 	cCategoryList=cCategory.split('<rd>')
 	$('#clClient').empty();
-	$('#clClient').append('<option value="">Category</option>');
+	$('#clClient').append('<option value="">Class</option>');
 	for (var j=0; j < cCategoryList.length-1; j++){
 		var clOpt='<option value="'+cCategoryList[j]+'">'+cCategoryList[j]+'</option>'
 		 $('#clClient').append(clOpt);
@@ -10835,7 +10835,7 @@ function chemist_add() {
 	var cSubCategory=localStorage.clCatSubStr											
 	clCatSubList=cSubCategory.split('<rd>')
 	$('#clSubClient').empty();
-	$('#clSubClient').append('<option value="">Sub Category</option>');
+	$('#clSubClient').append('<option value="">Sub Class</option>');
 	for (var j=0; j < clCatSubList.length-1; j++){
 		var clSOpt='<option value="'+clCatSubList[j]+'">'+clCatSubList[j]+'</option>'
 		 $('#clSubClient').append(clSOpt);
@@ -10843,20 +10843,19 @@ function chemist_add() {
 	
 	var clType=localStorage.clTypeStr											
 	clTypeList=clType.split('<fd>')
-	var clTypeL='<table width="500px">'
-	for (var j=0; j < clTypeList.length-1; j++){
-		var clientTypeID="clientType"+j
-		var clTypeL=clTypeL+'<tr><td><input class="docCampaign" type="checkbox" name="'+clientTypeID+'" value="'+clTypeList[j]+'" id="'+clientTypeID+'"><label for="'+clientTypeID+'">'+clTypeList[j]+'&nbsp;&nbsp;</label></td></tr>';
-		 
-	}
-	clTypeL=clTypeL+'</table>'
 	$('#clType').empty();
-	$('#clType').html(clTypeL);
+	$('#clType').append('<option value="">Type</option>');
 	
+	for (var j=0; j < clTypeList.length; j++){
+		var clType='<option value="'+clTypeList[j]+'">'+clTypeList[j]+'</option>'
+		$('#clType').append(clType);	 
+	}
+	
+
 	var clientCat=localStorage.clientCatList											
 	clientCatList=clientCat.split('<fd>')
 	var clientCatL='<table width="500px">'
-	for (var j=0; j < clientCatList.length-1; j++){
+	for (var j=0; j < clientCatList.length; j++){
 		var clientCatID="clientCat"+j
 		var clientCatL=clientCatL+'<tr><td><input class="docCampaign" type="checkbox" name="'+clientCatID+'" value="'+clientCatList[j]+'" id="'+clientCatID+'"><label for="'+clientCatID+'">'+clientCatList[j]+'&nbsp;&nbsp;</label></td></tr>';
 		 
@@ -11073,25 +11072,26 @@ function chemist_submit() {
 	//alert ('4')
 	//alert (chemist_name +','+chemist_ph +','+managerName+','+managerContactNumber )
 	//============
-	var clType=localStorage.clTypeStr											
-	clTypeList=clType.split('<fd>')
-	var clTypeL=''
-	for (var j=0; j < clTypeList.length-1; j++){
-		var clientTypeID="clientType"+j
-		var check_valT=$("input[name='"+clientTypeID+"']:checked").val();
-		if ((check_valT!='undefined') && (check_valT!=undefined)){
-			if (clTypeL==''){clTypeL=check_valT}else{clTypeL=clTypeL+','+check_valT}
-		
-		}
-		 
-	}
+	//var clType=localStorage.clTypeStr											
+//	clTypeList=clType.split('<fd>')
+//	var clTypeL=''
+//	for (var j=0; j < clTypeList.length-1; j++){
+//		var clientTypeID="clientType"+j
+//		var check_valT=$("input[name='"+clientTypeID+"']:checked").val();
+//		if ((check_valT!='undefined') && (check_valT!=undefined)){
+//			if (clTypeL==''){clTypeL=check_valT}else{clTypeL=clTypeL+','+check_valT}
+//		
+//		}
+//		 
+//	}
 
+	var clTypeL=$("#clType").val();
 	
 	var clientCat=localStorage.clientCatList											
 	clientCatList=clientCat.split('<fd>')
 	var clientCatL=''
 	
-	for (var j=0; j < clientCatList.length-1; j++){
+	for (var j=0; j < clientCatList.length; j++){
 		var clientCatID="clientCat"+j
 		var check_val=$("input[name='"+clientCatID+"']:checked").val();
 		if ((check_val!='undefined') && (check_val!=undefined)){
