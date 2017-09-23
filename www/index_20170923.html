@@ -141,11 +141,11 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                     <div class="input-group">
                         <table width="100%" border="0" >
                       <tr>
-                        <td align="center"><div id="chemisVDiv" align="center"  style="width:100%; background-color:#09C;" onClick="chemist_visit();"><img style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="chemist_visit.png"> </div>
+                        <td align="center"><div id="chemisVDiv" align="center"  style="width:100%; background-color:#09C; "><img onClick="chemist_visit();" style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="chemist_visit.png"> </div>
                         </td>
 						
                         <td>
-                        <div id="chSaveDiv" align="center"  style="width:100%; background-color:#09C; " onClick="saved_visit();" ><img  style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="saved_visit.png"> </div>
+                        <div id="chSaveDiv" align="center"  style="width:100%; background-color:#09C; "><img onClick="saved_visit();" style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="saved_visit.png"> </div>
                         
                        </td>
                       </tr>
@@ -173,17 +173,17 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                       </tr>
 					  -->
                        <tr>
-                        <td align="center"><div id="teamShow" align="center"  style="width:100%; background-color:#09C; " onClick="team();"><img  style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="team.png"> </div>
+                        <td align="center"><div id="teamShow" align="center"  style="width:100%; background-color:#09C; "><img onClick="team();" style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="team.png"> </div>
                         
                         
                         </td>
                         <td>
-                        <div align="center"  style="width:100%; height:103px;background-color:#09C; " onClick="reports();"><img style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="reports.png"><!--   --></div>
+                        <div align="center"  style="width:100%; height:103px;background-color:#09C; "><img onClick="reports();" style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="reports.png"><!--   --></div>
                        </td>
                       </tr>
 					  
                        <tr>
-                        <td align="center"><div id="inboxShow" align="center"  style="width:100%; background-color:#09C; " onClick="page_inbox();"><img style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="inbox.png"> </div>
+                        <td align="center"><div id="inboxShow" align="center"  style="width:100%; background-color:#09C; "><img onClick="page_inbox();" style="padding-top:0px; padding-bottom:0px;" hight="100px" width="100px" src="inbox.png"> </div>
                         
                         
                         </td>
@@ -815,8 +815,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			  </div>-->
 				
                 </br>
-			 
-             <div>Discount : <input type="number" name="ord_disc" id="ord_disc" value="" style="width:100px;"/></div>
+
 
              <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -2164,8 +2163,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				<!--<input type="submit" style="width:100%; height:30px; width:40px; background-color:#09C; color:#FFF; font-size:15px;" onClick="cancelSave('+i+')" value="C"  >' -->
                 			
                
-                <div id="saved_visit" data-role="listview"  style="background-color:#EDFEED">
-                </div>
+                <ul id="saved_visit" data-role="listview"  style="background-color:#EDFEED">
+                </ul>
+                
+				
                 
                 <br>
 				<br>
@@ -2242,7 +2243,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					  <tr>
 						<td>From &nbsp;</td>
 						<td><input id="date_from_doc" name="date_from_doc" type="date" data-role="date"  ></td>
-					  </tr>
+						</tr>	
+					
+					
 					  <tr>
 						<td>To &nbsp;</td>
 						<td><input id="date_to_doc" name="date_to_doc" type="date" data-role="date" ></td>
@@ -2255,9 +2258,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				
 				</br></br>
 				<div id="order_report_button"> </div>
-                </br></br>
-                <input type="submit" id="btnLpcSr" onClick="report_lpc_sr();"  style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="   Today Status     "   />
-				              
+				
+                
                 <br>
 				<br>
     
@@ -2420,62 +2422,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     </div>  
 
 
-<div class="view" id="page_lpc_sr_reportView">
-    <div class="pages">
-        <header> <h3 align="center" style="font-size:18px; font-weight:normal; color:#F8F8F8"><div id="report_header" align="center"> Today Status</div></h3></header> 
-        <div class="panel" id="page_lpc_report" style="background-color:#EDFEED">
-            </br></br></br></br>
-            <input id="myerror_s_reporttxt" name="myerror_s_reporttxt" type="hidden"  >                    
-            <div id="myerror_s_report" style="color:#C00"></div>            
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td><div id="report_mpo">  </div></td>            
-                    </tr>            
-                    <tr>
-                        <td><div id="report_market" >  </div></td>
-                    </tr>
-                    <tr>
-                        <td><div id="report_item" >  </div></td>
-                    </tr>            
-                    <tr>            
-                        <td><div id="date_f"> </div></td>
-                    </tr>
-                    <tr>	
-                        <td> <div id="date_t">  </div></td>
-                    </tr>
-                </table>            
-            <div style='background-color:#00BFBF; height:5px; font-size:5px'></div>            
-            <img id="wait_image_order" style="width:50px" src="loading.gif" alt="">
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                	<tr>
-                    	<td><div id="today_outlet">  </div></td>
-                    </tr>
-                    <tr>
-                    	<td><div id="today_outlet_remain">  </div></td>
-                    </tr>	
-                    <tr>
-                    	<td><div id="today_achieved">  </div></td>
-                    </tr>
-                    <tr>
-                    	<td><div id="visited_outlet">  </div></td>
-                    </tr>	
-                    <tr>
-                    	<td><div id="today_lpc">  </div></td>
-                    </tr>
-                    <tr>
-                    	<td><div id="today_sr">  </div></td>
-                    </tr>							   
-                </table>
-            <div id="rep_detail" style="color:#000066"></div>        
-        </div>        
-        <!-- </div>-->
-    </div>
-    
-    <footer>
-    <a onClick="page_reports_dcr()" class="icon left" ></a>
-    <a onClick="page_reports_dcr()"  ></a>
-    </footer>
-</div>  
+
 
 
  <div class="view" id="page_sc_order_summary_reportView">
@@ -3521,32 +3468,6 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                          
                          </td>
                         </tr>
-                         <tr>
-                        <td >Route Type</td>
-                         <td >
-                             <select name="routeType" id="routeType" >
-                               	<option value="CLUSTER">CLUSTER</option>
-                                <option value="SCATERD">SCATERD</option>
-                                <option value="BOTH">BOTH</option>
-                              </select>
-                          </td>
-                        </tr>
-                        <!--<tr>
-                            <td >Division</td>
-                             <td ><input type="text" name="clDevision" id="clDevision"  value="" ></td>
-                        </tr>
-                        <tr>
-                            <td >District</td>
-                             <td ><input type="text" name="clDistrict" id="clDistrict"  value="" ></td>
-                        </tr>
-                        <tr>
-                            <td >Thana</td>
-                             <td ><input type="text" name="clThana" id="clThana"  value="" ></td>
-                        </tr>
-                        <tr>
-                            <td >Union</td>
-                             <td ><input type="text" name="clUnion" id="clUnion"  value="" ></td>
-                        </tr>-->
                          </table>
                         <table width="100%" border="0">
                         <tr>
@@ -4639,27 +4560,48 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                <!-- </div>-->
             </div>
        
-        <footer>        
-            <table width="100%" border="0">
-                <tr>
-                    <!----- jahangirEditedStart19Feb page_opItemPage2 ---->
-                    <td align="left">  <a onClick="page_opItemPage2()" class="icon left" ></a></td>
-                    <!----- jahangirEditedEnd19Feb page_opItemPage2 ---->
-                    <td width="40%">&nbsp;</td>
-                    <td width="40%" style="font-size:16px; color:#FFF"></td>
-                </tr>
-            </table>         
-		  <!--<a onClick="homePage()" class="icon home" >Home</a>-->          
-       </footer>
+        <footer>
+        
+                <table width="100%" border="0">
+  <tr>
+    <!----- jahangirEditedStart19Feb page_opItemPage2 ---->
+    <td align="left">  <a onClick="page_opItemPage2()" class="icon left" ></a></td>
+     <!----- jahangirEditedEnd19Feb page_opItemPage2 ---->
+     <td width="40%">&nbsp;</td>
+     <td width="40%" style="font-size:16px; color:#FFF"></td>
+  </tr>
+</table>	
+         
+		  <!--<a onClick="homePage()" class="icon home" >Home</a>-->
+          
+           </footer>
 
     </div>    
+
+
+
+
+
+
+
+
+
+
 
 
   
 <!--================================Prescriptio End=============   --> 
  <script type="text/javascript" src="phonegap.js"></script>
 
-   
+          
+              
+
+
+
+
+
+    
+    
 </body>
 
 </html>>>>>
