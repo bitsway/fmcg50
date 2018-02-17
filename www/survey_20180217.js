@@ -9408,156 +9408,72 @@ function report_lpc_sr() {
 	$("#myerror_s_reporttxt").val(localStorage.report_url+'lpc_sr_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type);
 	//alert(localStorage.report_url+'lpc_sr_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type);
 	// ajax-------
-	$.ajax(localStorage.report_url+'lpc_sr_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type,{
+		$.ajax(localStorage.report_url+'lpc_sr_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type,{
 
-		type: 'POST',
-		timeout: 30000,
-		error: function(xhr) {
-			$("#wait_image_order").hide();
-			$("#myerror_s_report").html('Network Timeout. Please check your Internet connection..');
-							},
-		success:function(data, status,xhr){	
-		$("#wait_image_order").hide();
-			 if (status!='success'){
-				$("#myerror_s_report").html('Network Timeout. Please check your Internet connection...');
-				
-			 }else{	
-					var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
-							
-					if (resultArray[0]=='FAILED'){
-								$("#myerror_s_report").text(resultArray[0]);								
-					}else if (resultArray[0]=='SUCCESS'){											
-						var result_string=resultArray[1];													
-						//----------------
-						var resultList = result_string.split('<rd>');
-						var today_outlet=resultList[0];
-						var today_outlet_remain=resultList[1];
-						var today_achieved=resultList[2];
-						var visited_outlet=resultList[3];
-						var today_lpc=resultList[4];
-						var today_sr=resultList[5];
-					
-						//-----------------
-						$("#myerror_s_report").html("");
-						
-						$("#report_header").text(" Today Status");
-						$("#today_outlet").html("<font style='font-size:15px; color:#666'>"+"Total Outlet  :"+"</div>"+today_outlet);
-						$("#today_outlet_remain").html("<font style='font-size:15px; color:#666'>"+"Outlet Remain  :"+"</div>"+today_outlet_remain);
-						$("#today_achieved").html("<font style='font-size:15px; color:#666'>"+"Achieved  :"+"</div>"+today_achieved);
-						$("#visited_outlet").html("<font style='font-size:15px; color:#666'>"+"Visited  :"+"</div>"+visited_outlet);
-						$("#today_lpc").html("<font style='font-size:15px; color:#666'>"+"LPC  :"+"</div>"+today_lpc);
-						$("#today_sr").html("<font style='font-size:15px; color:#666'>"+"S/R  :"+"</div>"+today_sr);		
-		
-						$("#rep_detail").html("");
-					//-----					
-				}else{		
-					$("#wait_image_order").hide();					
-					$("#myerror_s_report").html('Network Timeout. Please check your Internet connection.');
-					}
-			}
-		  }
-	});//end ajax
-
-	$.afui.loadContent("#page_lpc_report",true,true,'right');
-}
-
-function report_targer_vs_ach() {		
-	$("#wait_image_order").show();
-	// Blank all div
-	$("#today_outlet").html("");
-	$("#today_outlet_remain").html("");
-	$("#today_achieved").html("");
-	$("#visited_outlet").html("");
-	$("#today_lpc").html("");
-	$("#today_sr").html("");
-	
-	// ajax-------
-	$("#myerror_s_report_target_ach").html('');
-	//$("#myerror_s_reporttxt").val(localStorage.report_url+'lpc_sr_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type);
-	//alert(localStorage.report_url+'report_target_vs_ach?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type);
-	// ajax-------
-	$.ajax(localStorage.report_url+'report_target_vs_ach?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type,{
-
-		type: 'POST',
-		timeout: 30000,
-		error: function(xhr) {
-			$("#wait_image_rpt_target_ach").hide();
-			$("#myerror_s_report_target_ach").html('Network Timeout. Please check your Internet connection..');
-							},
-		success:function(data, status,xhr){	
-		$("#wait_image_rpt_target_ach").hide();
-			 if (status!='success'){
-				$("#myerror_s_report_target_ach").html('Network Timeout. Please check your Internet connection...');
-				
-			 }else{	
-					var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
-							
-					if (resultArray[0]=='FAILED'){
-								$("#myerror_s_report_target_ach").text(resultArray[0]);								
-					}else if (resultArray[0]=='SUCCESS'){
-						var rep_id=resultArray[1];											
-						var date_from=resultArray[2];
-						var date_to=resultArray[3];
-						var month_work_day=resultArray[4];
-						var till_work_day=resultArray[5];
-						var workDayRemain=resultArray[6];
-						var categoryIdSpStr=resultArray[7];
-						var targetAchStr=resultArray[8];
-						
-						var rptStr='<table class="rptTblH" width="100%"  border="0" cellspacing="0" cellpadding="0">';
-						rptStr+='<tr><td>Rep ID</td><td>:</td><td>'+rep_id+'</td></tr>';
-						rptStr+='<tr><td>Date From</td><td>:</td><td>'+date_from+'</td></tr>';
-						rptStr+='<tr><td>Date To</td><td>:</td><td>'+date_to+'</td></tr>';
-						rptStr+='<tr><td>Monthly W/D</td><td>:</td><td>'+month_work_day+'</td></tr>';
-						rptStr+='<tr><td>W/D Passed</td><td>:</td><td>'+till_work_day+'</td></tr>';
-						rptStr+='<tr><td>W/D Remain</td><td>:</td><td>'+workDayRemain+'</td></tr>';						
-						rptStr+='<table><br/>';
-						
-																			
-						//----------------
-						var categoryIdSpStr = categoryIdSpStr.split('<fd>');						
-						var categoryIdSpStrLen=categoryIdSpStr.length;
-						
-						if (categoryIdSpStrLen>1){
-							for(var i=0;i<categoryIdSpStrLen;i++){							
-								rptStr+='<table class="rptTbl" width="100%"  border="0" cellspacing="0" cellpadding="0"><tr><td width="20%">'+categoryIdSpStr[i]+'</td><td width="80%"><table class="rptTbl1" width="100%"  border="0" cellspacing="0" cellpadding="0">';
-								
-								var targetAchStr1 = targetAchStr.split('<rd>');						
-								var targetAchStrLen=targetAchStr1.length;							
-								
-									for(var j=0;j<targetAchStrLen;j++){
-										var targetAchStr2=targetAchStr1[j].split('<fd>');
+								type: 'POST',
+								timeout: 30000,
+								error: function(xhr) {
+									$("#wait_image_order").hide();
+									$("#myerror_s_report").html('Network Timeout. Please check your Internet connection..');
+													},
+								success:function(data, status,xhr){	
+								$("#wait_image_order").hide();
+									 if (status!='success'){
+										$("#myerror_s_report").html('Network Timeout. Please check your Internet connection...');
 										
-										if(categoryIdSpStr[i]==targetAchStr2[0]){							
-											rptStr+='<tr><td>Month Tgt.(In MT.)</td><td>:</td><td>'+targetAchStr2[1]+'</td></tr>';
-											rptStr+='<tr><td>Till Date Tgt.(In MT.)</td><td>:</td><td>'+targetAchStr2[2]+'</td></tr>';
-											rptStr+='<tr><td>Till Date Achiv.(In MT.)</td><td>:</td><td>'+targetAchStr2[3]+'</td></tr>';
-											rptStr+='<tr><td>Till Date Achiv.(%)</td><td>:</td><td>'+targetAchStr2[4]+'%</td></tr>';
-											rptStr+='<tr><td>Monthly Achiv.(%)</td><td>:</td><td>'+targetAchStr2[5]+'%</td></tr>';
-											rptStr+='<tr><td>Remaining Tgt.(In MT.)</td><td>:</td><td>'+targetAchStr2[6]+'</td></tr>';
-											rptStr+='<tr><td>Tgt/Day.(In MT.)</td><td>:</td><td>'+targetAchStr2[7]+'</td></tr>';
+									 }
+									 else{	
+									 	var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
+										
+								if (resultArray[0]=='FAILED'){
+											$("#myerror_s_report").text(resultArray[0]);	
+											
 										}
-									
+								else if (resultArray[0]=='SUCCESS'){
+			
+														
+								var result_string=resultArray[1];
+								
+																
+								//----------------
+								var resultList = result_string.split('<rd>');
+								var today_outlet=resultList[0];
+								var today_outlet_remain=resultList[1];
+								var today_achieved=resultList[2];
+								var visited_outlet=resultList[3];
+								var today_lpc=resultList[4];
+								var today_sr=resultList[5];
+							
+								//-----------------
+								$("#myerror_s_report").html("");
+								
+								$("#report_header").text(" Today Status");
+								$("#today_outlet").html("<font style='font-size:15px; color:#666'>"+"Total Outlet  :"+"</div>"+today_outlet);
+								$("#today_outlet_remain").html("<font style='font-size:15px; color:#666'>"+"Outlet Remain  :"+"</div>"+today_outlet_remain);
+								$("#today_achieved").html("<font style='font-size:15px; color:#666'>"+"Achieved  :"+"</div>"+today_achieved);
+								$("#visited_outlet").html("<font style='font-size:15px; color:#666'>"+"Visited  :"+"</div>"+visited_outlet);
+								$("#today_lpc").html("<font style='font-size:15px; color:#666'>"+"LPC  :"+"</div>"+today_lpc);
+								$("#today_sr").html("<font style='font-size:15px; color:#666'>"+"S/R  :"+"</div>"+today_sr);
+
+
+								$("#rep_detail").html("");
+								//-----
+
+								
+							}else{		
+								$("#wait_image_order").hide();					
+								$("#myerror_s_report").html('Network Timeout. Please check your Internet connection.');
 								}
-								rptStr+='</table></td></tr></table><br/>';							
-							}
-						}else{
-							$("#myerror_s_report_target_ach").html('Data not available.');
 						}
-						$("#monthly_target_ach").html(rptStr);
-						//-----------------						
-					//-----					
-				}else{		
-					$("#myerror_s_report_target_ach").hide();					
-					$("#myerror_s_report_target_ach").html('Network Timeout. Please check your Internet connection.');
-					}
-			}
-		  }
-	});//end ajax
+					  }
+			 });//end ajax
+	
+	
+	
+	
+	$.afui.loadContent("#page_lpc_report",true,true,'right');
 
-	$.afui.loadContent("#page_target_ach_report",true,true,'right');
 }
-
 
 
 function s_order_summary_report() {		
