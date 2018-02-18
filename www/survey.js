@@ -1498,7 +1498,7 @@ function check_user() {
 
 
 	//online
-   var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
+  	var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
 	
 	var user_id=$("#user_id").val();
@@ -9462,7 +9462,7 @@ function report_lpc_sr() {
 }
 
 function report_targer_vs_ach() {		
-	$("#wait_image_order").show();
+	$("#wait_image_rpt_target_ach").show();
 	// Blank all div
 	$("#today_outlet").html("");
 	$("#today_outlet_remain").html("");
@@ -9627,10 +9627,7 @@ function s_order_summary_report() {
 								}
 						}
 					  }
-			 });//end ajax
-	
-	
-	
+			 });//end ajax	
 	
 	$.afui.loadContent("#page_sc_order_summary_report",true,true,'right');
 
