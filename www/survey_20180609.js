@@ -190,23 +190,27 @@ $.afui.useOSThemes=false;
 		}
 		if (localStorage.delivery_date_flag=='YES'){
 			$("#delivery_date_div").show();
-		}else{
+		}
+		else{
 			$("#delivery_date_div").hide();
 		}
 		if (localStorage.collection_date_flag=='YES'){
 			$("#collection_date_div").show();
-		}else{
+		}
+		else{
 			$("#collection_date_div").hide();
 		}
 		if (localStorage.payment_date_flag=='YES'){
 			$("#payment_date_div").show();
-		}else{
+		}
+		else{
 			$("#payment_date_div").hide();
 		}
 		if (localStorage.payment_mode_flag=='YES'){
 			localStorage.payment_mode='Cash'
 			$("#payment_mode_div").show();
-		}else{
+		}
+		else{
 			$("#payment_mode_div").hide();
 		}
 		
@@ -282,8 +286,8 @@ $.afui.useOSThemes=false;
 	
 	
 	var currentDate = new Date()
-	var day = currentDate.getDate();if(parseInt(day)<=9){day="0" + day};
-	var month = currentDate.getMonth() + 1;if(parseInt(month)<=9){month="0" +month};
+	var day = currentDate.getDate();if(parseInt(day)<9)	{day="0" + day};
+	var month = currentDate.getMonth() + 1;if(parseInt(month)<9){month="0" +month};
 	var year = currentDate.getFullYear()
 	//alert (parseInt(day))
 	var today=  year + "-" + month + "-" + day
@@ -360,8 +364,8 @@ function page_saved_Doc() {
 	var docSaveStr=''
 	docSaveStr=docSaveStr+' <table bordercolor="#009999" style="color:#000091" height="30px" width="100%" border="1" cellpadding="0" cellspacing="0" style="border-radius:5px;">'
 	var currentDate = new Date()
-	var day = currentDate.getDate();if(parseInt(day)<=9){day="0" + day};
-	var month = currentDate.getMonth() + 1;if(parseInt(month)<=9){month="0" +month};
+	var day = currentDate.getDate();if(parseInt(day)<9)	{day="0" + day};
+	var month = currentDate.getMonth() + 1;if(parseInt(month)<9){month="0" +month};
 	var year = currentDate.getFullYear()
 	//alert (parseInt(day))
 	var today=  year + "-" + month + "-" + day
@@ -479,12 +483,12 @@ function saved_Doc_set(i) {
 
 
 function homePage() {
-	var currentDate = new Date()	
-	var day = currentDate.getDate();if(parseInt(day)<=9){day="0" + day};
-	var month = currentDate.getMonth() + 1;if(parseInt(month)<=9){month="0" +month};
+	var currentDate = new Date()
+	var day = currentDate.getDate();if(parseInt(day)<9)	{day="0" + day};
+	var month = currentDate.getMonth() + 1;if(parseInt(month)<9){month="0" +month};
 	var year = currentDate.getFullYear()
 	//alert (parseInt(day))
-	var today=  year + "-" + month + "-" + day	
+	var today=  year + "-" + month + "-" + day
 	localStorage.today=today;						
 	$('#pendingItemShow').empty();
 	//if ((localStorage.synced=='YES') & (localStorage.sync_date==today)){
@@ -1494,7 +1498,7 @@ function check_user() {
 
 
 	//online
-   var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
+  	var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
  
 	
 	var user_id=$("#user_id").val();
@@ -1646,7 +1650,6 @@ function check_user() {
 													localStorage.clCatSubStr=resultArray[37]
 													localStorage.clTypeStr=resultArray[38]
 													localStorage.clientCatList=resultArray[39]
-													localStorage.clientOrdRmkList=resultArray[40]
 													
 													if (localStorage.visit_location_flag!='YES'){
 														$("#visit_location").hide();
@@ -1767,6 +1770,7 @@ function check_user() {
 															
 															profileMarketComb+='<li class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" style="border-bottom-style:solid; border-color:#CBE4E4;border-bottom-width:thin;height:15px"><a onClick="marketNextCProfileLV(\''+marketNameID+'\')"><font class="name" style="font-size:12; font-weight:bold; color:#306161">'+marketNameID+'</font></a></li>';
 															
+
 															}
 													}
 																		
@@ -4462,21 +4466,6 @@ function cart_data() {
 		
 	}
 	
-	var remarkStr=localStorage.clientOrdRmkList.split('<rd>');
-	var remarkStrLen=remarkStr.length;
-	
-	var remarksStrList='';
-	remarksStrList='<select name="ord_rmk" id="ord_rmk" style="width:80%;">';
-	remarksStrList+='<option value="">Select One</option>';
-	for (var k=0;k<remarkStrLen;k++){		
-		remarksStrList+='<option value="'+remarkStr[k]+'">'+remarkStr[k]+'</option>';
-	}
-	remarksStrList+='</select>';
-	
-	$("#ord_rmk_div").empty();
-	$("#ord_rmk_div").html(remarksStrList);
-	
-	
 	$.afui.loadContent("#page_order",true,true,'right');
 	
 }
@@ -4654,7 +4643,6 @@ function payment_mode(){
 function cart_ok(){
 	
 	var ordDisc=$("#ord_disc").val();
-	var ordRmk=$("#ord_rmk").val();
 	
 	if(ordDisc=="" | ordDisc=="None"){
 		localStorage.ordDiscount="0";
@@ -4662,14 +4650,8 @@ function cart_ok(){
 		localStorage.ordDiscount=ordDisc;
 	}
 	
-	if(ordRmk=="None"){
-		localStorage.ordRemarks="";
-	}else{
-		localStorage.ordRemarks=ordRmk;
-	}
 	
-	
-	var show_total="Total Order Amount CPP: "+localStorage.total_value+"TK  Discount: "+localStorage.ordDiscount +"Remarks: "+localStorage.ordRemarks +"<font style='font-size:11px'>TP:"+(localStorage.total_tp-localStorage.ordDiscount)+" TK" +"</font>" //</br> <font style='font-size:11px'> Regular Discount Applicable on TP : "+total_without_promo_show.toFixed(2) + " TK </font>
+	var show_total="Total Order Amount CPP: "+localStorage.total_value+"TK  Discount: "+localStorage.ordDiscount +"  TK <font style='font-size:11px'>TP:"+(localStorage.total_tp-localStorage.ordDiscount)+" TK" +"</font>" //</br> <font style='font-size:11px'> Regular Discount Applicable on TP : "+total_without_promo_show.toFixed(2) + " TK </font>
 	localStorage.show_total=show_total;
 	
 	
@@ -4685,8 +4667,7 @@ function cart_ok(){
 }
 function cancel_cart() {
 	$(".orderProduct").val('');
-	$("#ord_disc").val('');
-	$("#ord_rmk").val('');
+	
 	
 	$("#product_total_cart").html('');
 	$("#product_total_last").html('');
@@ -4698,7 +4679,6 @@ function cancel_cart() {
 	
 	$("#ord_disc").val('0');
 	localStorage.ordDiscount=0;
-	localStorage.ordRemarks="";
 	localStorage.productOrderStr='';
 	$("#product_list_tbl_cart").html("");
 	$("#wait_image_visit_submit").hide();
@@ -4732,7 +4712,6 @@ function lscVisitSubmit(){
 	$("#errorChkVSubmit").text("");
 	$("#visit_save_div").hide();
 	var ordDisc=localStorage.ordDiscount
-	var ordRmk=localStorage.ordRemarks
 	var visitClientId=localStorage.visit_client
 	var visit_type=localStorage.visit_type
 	var scheduled_date=localStorage.scheduled_date
@@ -4878,9 +4857,9 @@ function lscVisitSubmit(){
 														$("#visit_save_div").hide();
 														if (bonus_combo=='YES'){bonus_combo=1;}	else{bonus_combo=0;}
 														var imageName=localStorage.user_id+'_'+now+'.jpg';
-																		$("#errorChkVSubmitTxt").val(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&ord_disc='+ordDisc+'&ord_rmk='+encodeURIComponent(ordRmk)+'&version=p1')
+																		$("#errorChkVSubmitTxt").val(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&ord_disc='+ordDisc+'&version=p1')
 																												
-														$.ajax(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&ord_disc='+ordDisc+'&ord_rmk='+encodeURIComponent(ordRmk )+'&version=p1',{
+														$.ajax(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&ord_disc='+ordDisc+'&version=p1',{
 														// cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
 														type: 'POST',
 														timeout: 30000,
@@ -4929,8 +4908,6 @@ function lscVisitSubmit(){
 																
 																localStorage.visit_page="";																
 																localStorage.show_total="";
-																
-																
 																
 																$("#chemist_feedback").val('')
 																
@@ -9451,7 +9428,6 @@ function report_lpc_sr() {
 								$("#myerror_s_report").text(resultArray[0]);								
 					}else if (resultArray[0]=='SUCCESS'){											
 						var result_string=resultArray[1];													
-						
 						//----------------
 						var resultList = result_string.split('<rd>');
 						var today_outlet=resultList[0];
@@ -9460,46 +9436,19 @@ function report_lpc_sr() {
 						var visited_outlet=resultList[3];
 						var today_lpc=resultList[4];
 						var today_sr=resultList[5];
-						var today_sku=resultList[6];
-						var today_ord=resultList[7];
-						var today_target_ach=resultList[8];
-						
-						
+					
 						//-----------------
 						$("#myerror_s_report").html("");
 						
 						$("#report_header").text(" Today Status");
-						rptStr='<table class="rptTbl1" width="100%"  border="0" cellspacing="0" cellpadding="0">';																	
-						rptStr+='<tr><td>Total Outlet</td><td>:</td><td>'+today_outlet+'</td></tr>';
-						rptStr+='<tr><td>Visited Outlet</td><td>:</td><td>'+visited_outlet+'</td></tr>';
-						rptStr+='<tr><td>Yet to Visit Outlet</td><td>:</td><td>'+today_outlet_remain+'</td></tr>';
-						rptStr+='<tr><td>Order Count</td><td>:</td><td>'+today_ord+'</td></tr>';
-						rptStr+='<tr><td>SKU</td><td>:</td><td>'+today_sku+'</td></tr>';
-						rptStr+='<tr><td>S/R (%)</td><td>:</td><td>'+today_sr+'%</td></tr>';
-						rptStr+='<tr><td>LPC</td><td>:</td><td>'+today_lpc+'</td></tr>';
-						rptStr+='</table><br/>';
-						
-						var today_target_ach_arr=today_target_ach.split('<rdrd>')						
-						var today_target_ach_arr_len=today_target_ach_arr.length;
-						var rptStr1="";
-						if (today_target_ach!=''){
-							rptStr1='<table class="rptTbl1" width="100%"  border="0" cellspacing="0" cellpadding="0">';																	
-							rptStr1+='<tr style="font-weight:bold; font-size:10px;"><td style="border-right:.1px solid #cce6ff;">Product</td><td style="border-right:.1px solid #cce6ff; width:20%;" >Target(In Ltr./Kg.)</td><td style="border-right:.1px solid #cce6ff; width:20%;">Achiv.(In Ltr./Kg.)</td><td style="text-align:right; width:20%;">Achv.(%)</td></tr>';
-							for(var i=0;i<today_target_ach_arr_len;i++){
-									var today_target_ach_str=today_target_ach_arr[i].split('<fd>')								
-									rptStr1+='<tr><td style="border-right:.1px solid #cce6ff;">'+today_target_ach_str[0]+' ( '+today_target_ach_str[1]+'. )</td><td style="text-align:right; border-right:.1px solid #cce6ff;" >'+today_target_ach_str[2]+'</td><td style="text-align:right; border-right:.1px solid #cce6ff;" >'+today_target_ach_str[3]+'</td><td style="text-align:right;" >'+today_target_ach_str[4]+'%</td></tr>';
-								}						
-							
-							rptStr1+='</table>';
-						}
-						
-						
+						$("#today_outlet").html("<font style='font-size:15px; color:#666'>"+"Total Outlet  :"+"</div>"+today_outlet);
+						$("#today_outlet_remain").html("<font style='font-size:15px; color:#666'>"+"Outlet Remain  :"+"</div>"+today_outlet_remain);
+						$("#today_achieved").html("<font style='font-size:15px; color:#666'>"+"Achieved  :"+"</div>"+today_achieved);
+						$("#visited_outlet").html("<font style='font-size:15px; color:#666'>"+"Visited  :"+"</div>"+visited_outlet);
+						$("#today_lpc").html("<font style='font-size:15px; color:#666'>"+"LPC  :"+"</div>"+today_lpc);
+						$("#today_sr").html("<font style='font-size:15px; color:#666'>"+"S/R  :"+"</div>"+today_sr);		
+		
 						$("#rep_detail").html("");
-						$("#rep_today_status").empty();
-						$("#rep_today_status").html(rptStr);
-						
-						$("#rep_today_target_ach").empty();
-						$("#rep_today_target_ach").html(rptStr1);
 					//-----					
 				}else{		
 					$("#wait_image_order").hide();					
@@ -9554,7 +9503,6 @@ function report_targer_vs_ach() {
 						var workDayRemain=resultArray[6];
 						var categoryIdSpStr=resultArray[7];
 						var targetAchStr=resultArray[8];
-						var avgPerfStr=resultArray[9];
 						
 						var rptStr='<table class="rptTblH" width="100%"  border="0" cellspacing="0" cellpadding="0">';
 						rptStr+='<tr><td>Rep ID</td><td>:</td><td>'+rep_id+'</td></tr>';
@@ -9564,7 +9512,8 @@ function report_targer_vs_ach() {
 						rptStr+='<tr><td>W/D Passed</td><td>:</td><td>'+till_work_day+'</td></tr>';
 						rptStr+='<tr><td>W/D Remain</td><td>:</td><td>'+workDayRemain+'</td></tr>';						
 						rptStr+='<table><br/>';
-																								
+						
+																			
 						//----------------
 						var categoryIdSpStr = categoryIdSpStr.split('<fd>');						
 						var categoryIdSpStrLen=categoryIdSpStr.length;
@@ -9575,7 +9524,7 @@ function report_targer_vs_ach() {
 								
 								var targetAchStr1 = targetAchStr.split('<rd>');						
 								var targetAchStrLen=targetAchStr1.length;							
-									
+								
 									for(var j=0;j<targetAchStrLen;j++){
 										var targetAchStr2=targetAchStr1[j].split('<fd>');
 										
@@ -9588,28 +9537,14 @@ function report_targer_vs_ach() {
 											rptStr+='<tr><td>Remaining Tgt.(In MT.)</td><td>:</td><td>'+targetAchStr2[6]+'</td></tr>';
 											rptStr+='<tr><td>Tgt/Day.(In MT.)</td><td>:</td><td>'+targetAchStr2[7]+'</td></tr>';
 										}
-																			
+									
 								}
 								rptStr+='</table></td></tr></table><br/>';							
 							}
-						
-						var avgPerfStrArr = avgPerfStr.split('<fd>');
-						
-						var rptStr1='<div style="background-color:#C1DCF9; padding:5px; text-align:center; margin-bottom:5px;">Weighted Average Performance Status</div>';
-						rptStr1='<table class="rptTbl1" width="100%"  border="0" cellspacing="0" cellpadding="0">';
-						rptStr1+='<tr><td>Weighted Achievement (%)</td><td>:</td><td>'+avgPerfStrArr[0]+'</td></tr>';
-						rptStr1+='<tr><td>OIL (RSO&RPO) Monthly Achiv.(%)</td><td>:</td><td>'+avgPerfStrArr[1]+'</td></tr>';
-						rptStr1+='<tr><td>RBO Monthly Achiv. (%)</td><td>:</td><td>'+avgPerfStrArr[2]+'</td></tr>';
-						rptStr1+='<tr><td>M_OIL Monthly Achiv. (%)</td><td>:</td><td>'+avgPerfStrArr[3]+'</td></tr>';
-						rptStr1+='<tr><td>FLOUR(ATTA&MAIDA&SUJI&BA) Monthly Achiv. (%)</td><td>:</td><td>'+avgPerfStrArr[4]+'</td></tr>';
-						rptStr1+='<tr><td>TEA Monthly Achiv. (%)</td><td>:</td><td>'+avgPerfStrArr[5]+'</td></tr>';		
-						rptStr1+='<table><br/>';	
-						
 						}else{
 							$("#myerror_s_report_target_ach").html('Data not available.');
 						}
 						$("#monthly_target_ach").html(rptStr);
-						$("#monthly_avg_perf").html(rptStr1);
 						//-----------------						
 					//-----					
 				}else{		
@@ -9623,116 +9558,6 @@ function report_targer_vs_ach() {
 	$.afui.loadContent("#page_target_ach_report",true,true,'right');
 }
 
-
-function report_targer_vs_ach_summary() {		
-	$("#wait_image_rpt_target_ach_summary").show();
-	// Blank all div
-	$("#today_outlet").html("");
-	$("#today_outlet_remain").html("");
-	$("#today_achieved").html("");
-	$("#visited_outlet").html("");
-	$("#today_lpc").html("");
-	$("#today_sr").html("");
-	
-	// ajax-------
-	$("#myerror_s_report_target_ach_summary").html('');
-	//$("#myerror_s_reporttxt").val(localStorage.report_url+'lpc_sr_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type);
-	//alert(localStorage.report_url+'report_target_vs_ach_summary?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type);
-	// ajax-------
-	$.ajax(localStorage.report_url+'report_target_vs_ach_summary?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type,{
-
-		type: 'POST',
-		timeout: 30000,
-		error: function(xhr) {
-			$("#wait_image_rpt_target_ach_summary").hide();
-			$("#myerror_s_report_target_ach_summary").html('Network Timeout. Please check your Internet connection..');
-							},
-		success:function(data, status,xhr){	
-		$("#wait_image_rpt_target_ach_summary").hide();
-			 if (status!='success'){
-				$("#myerror_s_report_target_ach_summary").html('Network Timeout. Please check your Internet connection...');
-				
-			 }else{	
-					var resultArray = data.replace('</START>','').replace('</END>','').split('<SYNCDATA>');	
-							
-					if (resultArray[0]=='FAILED'){
-								$("#myerror_s_report_target_ach_summary").text(resultArray[0]);								
-					}else if (resultArray[0]=='SUCCESS'){								
-						var date_from=resultArray[1];
-						var date_to=resultArray[2];
-						var month_work_day=resultArray[3];
-						var till_work_day=resultArray[4];
-						var workDayRemain=resultArray[5];
-						var categoryIdSpStr=resultArray[6];
-						var targetAchStr=resultArray[7];
-						var avgPerfStr=resultArray[8];
-						
-						var rptStr='<table class="rptTblH" width="100%"  border="0" cellspacing="0" cellpadding="0">';
-						rptStr+='<tr><td>Date From</td><td>:</td><td>'+date_from+'</td></tr>';
-						rptStr+='<tr><td>Date To</td><td>:</td><td>'+date_to+'</td></tr>';
-						rptStr+='<tr><td>Monthly W/D</td><td>:</td><td>'+month_work_day+'</td></tr>';
-						rptStr+='<tr><td>W/D Passed</td><td>:</td><td>'+till_work_day+'</td></tr>';
-						rptStr+='<tr><td>W/D Remain</td><td>:</td><td>'+workDayRemain+'</td></tr>';						
-						rptStr+='<table><br/>';
-																								
-						//----------------
-						var categoryIdSpStr = categoryIdSpStr.split('<fd>');						
-						var categoryIdSpStrLen=categoryIdSpStr.length;
-						
-						if (categoryIdSpStrLen>1){
-							for(var i=0;i<categoryIdSpStrLen;i++){							
-								rptStr+='<table class="rptTbl" width="100%"  border="0" cellspacing="0" cellpadding="0"><tr><td width="20%">'+categoryIdSpStr[i]+'</td><td width="80%"><table class="rptTbl1" width="100%"  border="0" cellspacing="0" cellpadding="0">';
-								
-								var targetAchStr1 = targetAchStr.split('<rd>');						
-								var targetAchStrLen=targetAchStr1.length;							
-									
-									for(var j=0;j<targetAchStrLen;j++){
-										var targetAchStr2=targetAchStr1[j].split('<fd>');
-										
-										if(categoryIdSpStr[i]==targetAchStr2[0]){							
-											rptStr+='<tr><td>Month Tgt.(In MT.)</td><td>:</td><td>'+targetAchStr2[1]+'</td></tr>';
-											rptStr+='<tr><td>Till Date Tgt.(In MT.)</td><td>:</td><td>'+targetAchStr2[2]+'</td></tr>';
-											rptStr+='<tr><td>Till Date Achiv.(In MT.)</td><td>:</td><td>'+targetAchStr2[3]+'</td></tr>';
-											rptStr+='<tr><td>Till Date Achiv.(%)</td><td>:</td><td>'+targetAchStr2[4]+'%</td></tr>';
-											rptStr+='<tr><td>Monthly Achiv.(%)</td><td>:</td><td>'+targetAchStr2[5]+'%</td></tr>';
-											rptStr+='<tr><td>Remaining Tgt.(In MT.)</td><td>:</td><td>'+targetAchStr2[6]+'</td></tr>';
-											rptStr+='<tr><td>Tgt/Day.(In MT.)</td><td>:</td><td>'+targetAchStr2[7]+'</td></tr>';
-										}
-																			
-								}
-								rptStr+='</table></td></tr></table><br/>';							
-							}
-						
-						var avgPerfStrArr = avgPerfStr.split('<fd>');
-						
-						var rptStr1='<div style="background-color:#C1DCF9; padding:5px; text-align:center; margin-bottom:5px;">Weighted Average Performance Status</div>';
-						rptStr1='<table class="rptTbl1" width="100%"  border="0" cellspacing="0" cellpadding="0">';
-						rptStr1+='<tr><td>Weighted Achievement (%)</td><td>:</td><td>'+avgPerfStrArr[0]+'</td></tr>';
-						rptStr1+='<tr><td>OIL (RSO&RPO) Monthly Achiv.(%)</td><td>:</td><td>'+avgPerfStrArr[1]+'</td></tr>';
-						rptStr1+='<tr><td>RBO Monthly Achiv. (%)</td><td>:</td><td>'+avgPerfStrArr[2]+'</td></tr>';
-						rptStr1+='<tr><td>M_OIL Monthly Achiv. (%)</td><td>:</td><td>'+avgPerfStrArr[3]+'</td></tr>';
-						rptStr1+='<tr><td>FLOUR(ATTA&MAIDA&SUJI&BA) Monthly Achiv. (%)</td><td>:</td><td>'+avgPerfStrArr[4]+'</td></tr>';
-						rptStr1+='<tr><td>TEA Monthly Achiv. (%)</td><td>:</td><td>'+avgPerfStrArr[5]+'</td></tr>';		
-						rptStr1+='<table><br/>';	
-						
-						}else{
-							$("#myerror_s_report_target_ach_summary").html('Data not available.');
-						}
-						
-						$("#monthly_target_ach_summary").html(rptStr);
-						$("#monthly_avg_perf_summary").html(rptStr1);
-						//-----------------						
-					//-----					
-				}else{		
-					$("#myerror_s_report_target_ach_summary").hide();					
-					$("#myerror_s_report_target_ach_summary").html('Network Timeout. Please check your Internet connection.');
-					}
-			}
-		  }
-	});//end ajax
-
-	$.afui.loadContent("#page_target_ach_summary_report",true,true,'right');
-}
 
 
 function s_order_summary_report() {		

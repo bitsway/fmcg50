@@ -821,21 +821,19 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 </br>
 			 
              <div>Discount : <input type="number" name="ord_disc" id="ord_disc" value="" style="width:100px;"/></div>
-             <div>Remarks : 
-             	<span id="ord_rmk_div"></span>
-             </div>
 
              <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                <td style=" background-color:#DEF; height:50px"  align="center" onClick="cancel_cart()" ><img src="cancel.png"></td>
-               <td width="5px">&nbsp;</td>
-               <td style=" background-color:#DEF; height:50px"  align="center" onClick="cart_ok()"  ><img src="ok.png"></a></td>
+                <td width="5px">&nbsp;</td>
+                 <td style=" background-color:#DEF; height:50px"  align="center" onClick="cart_ok()"  ><img src="ok.png"></a></td>
               </tr>
             </table>
             
             </br></br></br></br></br></br></br></br>
                 
-                    </div>                   
+                    </div>
+                   
                <!-- </div>-->
             </div>
        
@@ -2240,8 +2238,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             <!--<h1>Sync</h1>-->
              
         
-    <div id="myerror" style="color:#C00"></div>                              
-					<div id="report"> </div>					
+    <div id="myerror" style="color:#C00"></div>               
+                              
+					<div id="report"> </div>
+					
 					<table width="100%" border="0">
 					  <tr>
 						<td>From &nbsp;</td>
@@ -2263,9 +2263,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 <input type="submit" id="btnLpcSr" onClick="report_lpc_sr();"  style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="   Today Status     "   />
 				 </br></br>
                 <input type="submit" id="btnTargetAch" onClick="report_targer_vs_ach();"  style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="   Target Vs Acheviement This Month "   />
-				<!--</br></br>
-                <input type="submit" id="btnTargetAchSum" onClick="report_targer_vs_ach_summary();"  style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="   Target Vs Acheviement Summary This Month "   />
-				   -->                  
+				                   
                 <br>
 				<br>
     
@@ -2427,24 +2425,6 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 
     </div>  
 
-<div class="view" id="page_target_ach_summary_reportView">
-    <div class="pages">
-        <header> <h3 align="center" style="font-size:18px; font-weight:normal; color:#F8F8F8"><div align="center"> Target Vs Achievement Summary</div></h3></header> 
-        <div class="panel" id="page_target_ach_summary_report" style="background-color:#EDFEED">
-            </br></br></br></br>                   
-            <div id="myerror_s_report_target_ach_summary" style="color:#C00"></div>          
-            <img id="wait_image_rpt_target_ach_summary" style="width:50px" src="loading.gif" alt="">               
-            <div id="monthly_target_ach_summary" style="color:#000066"></div>            
-            <div id="monthly_avg_perf_summary" style="color:#000066"></div>        
-        </div>
-    </div>
-    
-    <footer>
-    <a onClick="page_reports_dcr()" class="icon left" ></a>
-    <a onClick="page_reports_dcr()"  ></a>
-    </footer>
-</div>  
-
 <div class="view" id="page_target_ach_reportView">
     <div class="pages">
         <header> <h3 align="center" style="font-size:18px; font-weight:normal; color:#F8F8F8"><div align="center"> Target Vs Achievement</div></h3></header> 
@@ -2452,8 +2432,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </br></br></br></br>                   
             <div id="myerror_s_report_target_ach" style="color:#C00"></div>          
             <img id="wait_image_rpt_target_ach" style="width:50px" src="loading.gif" alt="">               
-            <div id="monthly_target_ach" style="color:#000066"></div>            
-            <div id="monthly_avg_perf" style="color:#000066"></div>        
+            <div id="monthly_target_ach" style="color:#000066"></div>        
         </div>
     </div>
     
@@ -2472,16 +2451,16 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </br></br></br></br>
             <input id="myerror_s_reporttxt" name="myerror_s_reporttxt" type="hidden"  >                    
             <div id="myerror_s_report" style="color:#C00"></div>            
-                <table class="rptTblH" width="100%" border="0" cellpadding="0" cellspacing="0" >
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" >
                     <tr>
                         <td><div id="report_mpo">  </div></td>            
                     </tr>            
                     <tr>
                         <td><div id="report_market" >  </div></td>
                     </tr>
-                    <!--<tr>
+                    <tr>
                         <td><div id="report_item" >  </div></td>
-                    </tr> -->           
+                    </tr>            
                     <tr>            
                         <td><div id="date_f"> </div></td>
                     </tr>
@@ -2491,10 +2470,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 </table>            
                 <br/>     
             <img id="wait_image_order" style="width:50px" src="loading.gif" alt="">
-            <div id="rep_today_status" style="color:#000066"></div>
-            <div id="rep_today_target_ach" style="color:#000066;"></div>
-            <br/><br/><br/>
-               <!-- <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" >
                 	<tr>
                     	<td><div id="today_outlet">  </div></td>
                     </tr>
@@ -2505,12 +2481,6 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                     	<td><div id="today_achieved">  </div></td>
                     </tr>
                     <tr>
-                    	<td><div id="today_ord">  </div></td>
-                    </tr>
-                    <tr>
-                    	<td><div id="today_sku">  </div></td>
-                    </tr>
-                    <tr>
                     	<td><div id="visited_outlet">  </div></td>
                     </tr>	
                     <tr>
@@ -2519,7 +2489,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                     <tr>
                     	<td><div id="today_sr">  </div></td>
                     </tr>							   
-                </table> -->                  
+                </table>                   
         </div>        
         <!-- </div>-->
     </div>
@@ -4721,4 +4691,4 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
    
 </body>
 
-</html>
+</html>>>
