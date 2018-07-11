@@ -4878,8 +4878,8 @@ function lscVisitSubmit(){
 														$("#visit_save_div").hide();
 														if (bonus_combo=='YES'){bonus_combo=1;}	else{bonus_combo=0;}
 														var imageName=localStorage.user_id+'_'+now+'.jpg';
-																		$("#errorChkVSubmitTxt").val(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&ord_disc='+ordDisc+'&ord_rmk='+encodeURIComponent(ordRmk)+'&version=p1')
-																												
+														$("#errorChkVSubmitTxt").val(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&ord_disc='+ordDisc+'&ord_rmk='+encodeURIComponent(ordRmk)+'&version=p1')
+														//alert(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&ord_disc='+ordDisc+'&ord_rmk='+encodeURIComponent(ordRmk )+'&version=p1');														
 														$.ajax(localStorage.base_url+'visitSubmit_pharma?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&client_id='+visitClientId+'&visit_type='+visit_type+'&schedule_date='+scheduled_date+'&market_info='+marketInfoStr+'&order_info='+productOrderStr+'&merchandizing='+marchandizingInfoStr+'&campaign='+campaign_str+'&lat='+lat+'&long='+longitude+'&visit_photo='+imageName+'&payment_mode='+localStorage.payment_mode+'&chemist_feedback='+chemist_feedback+'&delivery_date='+delivery_date+'&collection_date='+collection_date+'&location_detail='+localStorage.location_detail+'&bonus_combo='+bonus_combo+'&ord_disc='+ordDisc+'&ord_rmk='+encodeURIComponent(ordRmk )+'&version=p1',{
 														// cid:localStorage.cid,rep_id:localStorage.user_id,rep_pass:localStorage.user_pass,synccode:localStorage.synccode,
 														type: 'POST',
@@ -9623,6 +9623,21 @@ function report_targer_vs_ach() {
 	$.afui.loadContent("#page_target_ach_report",true,true,'right');
 }
 
+function report_targer_vs_ach1() {	
+	$.afui.loadContent("#page_target_ach_report1",true,true,'right');
+}
+
+function report_targer_vs_ach_n() {
+	$("#myerror_s_report_target_ach1").text("");	
+	var rpt_year=$("#rpt_year").val();
+	var rpt_month=$("#rpt_month").val();
+	if( rpt_year=="" || rpt_month=="" ){
+		$("#myerror_s_report_target_ach1").text("Required Year Month.");
+	}else{
+		window.location.href = localStorage.report_url+"report_home?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass+"&rpt_month="+rpt_month+"&rpt_year="+rpt_year;
+		}
+	
+}
 
 function report_targer_vs_ach_summary() {		
 	$("#wait_image_rpt_target_ach_summary").show();
@@ -9637,7 +9652,7 @@ function report_targer_vs_ach_summary() {
 	// ajax-------
 	$("#myerror_s_report_target_ach_summary").html('');
 	//$("#myerror_s_reporttxt").val(localStorage.report_url+'lpc_sr_report?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type);
-	//alert(localStorage.report_url+'report_target_vs_ach_summary?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type);
+	alert(localStorage.report_url+'report_target_vs_ach_summary?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type);
 	// ajax-------
 	$.ajax(localStorage.report_url+'report_target_vs_ach_summary?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&rep_id_report='+localStorage.rep_id_report_doc+'&se_item_report='+localStorage.se_item_report_doc+'&se_market_report='+localStorage.se_market_report_doc+'&date_from='+localStorage.date_from_doc+'&date_to='+localStorage.date_to_doc+'&user_type='+localStorage.user_type,{
 
