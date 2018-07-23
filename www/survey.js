@@ -1495,8 +1495,7 @@ function check_user() {
 
 	//online
    var apipath_base_photo_dm ='http://e2.businesssolutionapps.com/welcome/dmpath_live_new/get_path?CID='+cid +'&HTTPPASS=e99business321cba'
- 
-	
+ 	
 	var user_id=$("#user_id").val();
 	var user_pass=$("#user_pass").val();
 	
@@ -4466,10 +4465,10 @@ function cart_data() {
 	var remarkStrLen=remarkStr.length;
 	
 	var remarksStrList='';
-	remarksStrList='<select name="ord_rmk" id="ord_rmk" style="width:80%;">';
+	remarksStrList='<select name="ord_rmk" id="ord_rmk" style="width:80%; height:auto;" multiple >';
 	remarksStrList+='<option value="">Select One</option>';
 	for (var k=0;k<remarkStrLen;k++){		
-		remarksStrList+='<option value="'+remarkStr[k]+'">'+remarkStr[k]+'</option>';
+		remarksStrList+='<option value="'+remarkStr[k]+'" >'+remarkStr[k]+'</option>';
 	}
 	remarksStrList+='</select>';
 	
