@@ -1556,7 +1556,7 @@ function check_user() {
 							localStorage.photo_url=photo_url;
 							localStorage.photo_submit_url=photo_submit_url;
 							localStorage.report_url=report_url;
-							//alert (localStorage.photo_submit_url)
+							//alert (localStorage.report_url)
 							
 							localStorage.cid=cid;
 							localStorage.user_id=user_id;
@@ -4821,11 +4821,11 @@ function lscVisitSubmit(){
 		}
 		else{
 				//alert (delivery_date)
-				if  ((delivery_date.length < 8) || (collection_date.length < 8)){
+				/*if  ((delivery_date.length < 8) || (collection_date.length < 8)){
 					$("#errorChkVSubmit").html('Please enter collection and delivery date');
 					$("#visit_save_div").show()
 				}
-				else{
+				else{*/
 					
 					var currentDate = new Date()
 					var day = currentDate.getDate();if(day.length==1)	{day="0" +month};
@@ -4845,13 +4845,13 @@ function lscVisitSubmit(){
 					var diffDays_collection = date3 - date1; 
 					var d_chacke=86400000*7
 					//alert (d_chacke)
-					if  ((diffDays_delivery < 0 ) || (diffDays_delivery > d_chacke ) || (diffDays_collection < 0 )){
+					/*if  ((diffDays_delivery < 0 ) || (diffDays_delivery > d_chacke ) || (diffDays_collection < 0 )){
 						//alert (diffDays_delivery )
 						$("#errorChkVSubmit").html('Invalid collection and delivery date');
 						$("#visit_save_div").show();
 					}
 					
-					else{
+					else{*/
 								//alert (photoRequired)	
 			//					if (photoRequired=='Yes' && lscPhoto==''){
 			//						$("#errorChkVSubmit").html('Picture required, Because of Bad marchandizing');
@@ -5017,9 +5017,9 @@ function lscVisitSubmit(){
 							}//if 
 			
 						}
-					}//end collection and delivery date future
+					//}//end collection and delivery date future
 				
-				}//end collection and delivery date check
+				//}//end collection and delivery date check
 		}//sync date check
 }
 
@@ -11527,7 +11527,7 @@ function chemist_submit() {
 	
 			
 		// ajax------- 
-			//alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName+'&propiterName='+encodeURI(propiterName)+'&clClient='+encodeURI(clClient)+'&clSubClient='+encodeURI(clSubClient)+'&clTypeL='+encodeURI(clTypeL)+'&clientCatL='+encodeURI(clientCatL)+'&routeType='+routeType+'&bankAc='+bankAc)
+			alert (localStorage.base_url+'chemist_submit?cid='+localStorage.cid+'&rep_id='+localStorage.user_id+'&rep_pass='+localStorage.user_pass+'&synccode='+localStorage.synccode+'&market_id='+marketId+'&chemist_name='+encodeURI(chemist_name)+'&chemist_add='+encodeURI(chemist_add)+'&chemist_ph='+encodeURI(chemist_ph)+'&managerName='+encodeURI(managerName)+'&managerContactNumber='+encodeURI(managerContactNumber)+'&chemist_dob='+encodeURI(chemist_dob)+'&imageName='+imageName+'&propiterName='+encodeURI(propiterName)+'&clClient='+encodeURI(clClient)+'&clSubClient='+encodeURI(clSubClient)+'&clTypeL='+encodeURI(clTypeL)+'&clientCatL='+encodeURI(clientCatL)+'&routeType='+routeType+'&bankAc='+bankAc)
 				
 				$.ajax({
 					 type: 'POST',
@@ -11542,7 +11542,7 @@ function chemist_submit() {
 								if (resultArray[0]=='FAILED'){						
 									$("#error_chemist_add_page").html(resultArray[1]);	
 									$('#outletAdd').show();
-								$("#wait_image_ch").hide();							
+									$("#wait_image_ch").hide();							
 								
 								}else if (resultArray[0]=='SUCCESS'){
 									uploadPhoto(chPhoto, imageName);
@@ -13296,3 +13296,19 @@ function medClick2(pid, name){
 $('#ThumbnailTest_buttonTakePhotosNow').click(function(){
     takePicture();
 });
+
+function report_stock_and_sales(){
+	var date_from_doc=$("#date_from_doc").val();
+	var date_to_doc=$("#date_to_doc").val();	
+	window.location.href = localStorage.report_url+"report_index?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass+"&date_from="+date_from_doc+"&date_to="+date_to_doc;
+	}
+	
+function receive(){
+	window.location.href = localStorage.report_url+"depot_index?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass;
+	}
+
+function delivery(){
+	window.location.href = localStorage.report_url+"print_manager_index?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass;
+	}
+
+
