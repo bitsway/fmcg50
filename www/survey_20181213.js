@@ -1854,7 +1854,7 @@ function check_user() {
 													//------------ Order Item list								
 													
 									if (order_report=="Yes"){
-										localStorage.report_button=' <input type="submit" id="loginButton" onClick="s_order_summary_report();"  style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="    Sales Call and Order Count     "   /></br></br><input type="submit" id="loginButton" onClick="s_order_detail_report();"  style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="    Sales Call and Order Detail     "   />'
+										localStorage.report_button=' <input type="submit" id="loginButton" onClick="s_order_summary_report();"  style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="    Sales Call and Order Count     "   /></br><input type="submit" id="loginButton" onClick="s_order_detail_report();"  style="width:100%; height:50px; background-color:#09C; color:#FFF; font-size:20px" value="    Sales Call and Order Detail     "   />'
 									}
 									$('#order_report_button').empty();
 									$('#order_report_button').append(localStorage.report_button).trigger('create');
@@ -13300,13 +13300,7 @@ $('#ThumbnailTest_buttonTakePhotosNow').click(function(){
 function report_stock_and_sales(){
 	var date_from_doc=$("#date_from_doc").val();
 	var date_to_doc=$("#date_to_doc").val();	
-	window.location.href = localStorage.report_url+"report_sales_stock?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass+"&date_from="+date_from_doc+"&date_to="+date_to_doc;
-	}
-	
-function report_target_ach_dist(){
-	var date_from_doc=$("#date_from_doc").val();
-	var date_to_doc=$("#date_to_doc").val();	
-	window.location.href = localStorage.report_url+"report_target_ach_dist?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass+"&date_from="+date_from_doc+"&date_to="+date_to_doc;
+	window.location.href = localStorage.report_url+"report_index?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass+"&date_from="+date_from_doc+"&date_to="+date_to_doc;
 	}
 	
 function receive(){
