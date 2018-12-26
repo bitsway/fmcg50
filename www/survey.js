@@ -4451,7 +4451,7 @@ function cart_data() {
 		//var total_without_promo_show=parseFloat(total_without_promo)-parseFloat(total_without_promo_vat)
 		
 		
-		var show_total="Total Order Amount CPP: "+localStorage.total_value+"TK  Discount: "+localStorage.ordDiscount +"  TK <font style='font-size:11px'>TP:"+(localStorage.total_tp-localStorage.ordDiscount)+" TK" +"</font>"  //</br> <font style='font-size:11px'> Regular Discount Applicable on TP : "+total_without_promo_show.toFixed(2) + " TK </font>
+		var show_total="Total Order Amount CPP: "+localStorage.total_value+"TK  Discount: "+localStorage.ordDiscount +"  TK TP:"+(localStorage.total_tp-localStorage.ordDiscount)+" TK"  //</br> <font style='font-size:11px'> Regular Discount Applicable on TP : "+total_without_promo_show.toFixed(2) + " TK </font>
 		localStorage.show_total=show_total;
 		
 		
@@ -4651,24 +4651,28 @@ function payment_mode(){
 	//alert (localStorage.payment_mode)
 }
 function cart_ok(){
-	
+	var ordDiscAdj=$("#dist_adj").val();
 	var ordDisc=$("#ord_disc").val();
 	var ordRmk=$("#ord_rmk").val();
 	
 	if(ordDisc=="" | ordDisc=="None"){
 		localStorage.ordDiscount="0";
 	}else{
-		localStorage.ordDiscount=ordDisc;
+		if (ordDiscAdj=='-'){
+			localStorage.ordDiscount=-ordDisc;
+		}else{
+			localStorage.ordDiscount=ordDisc;
+		}
 	}
 	
-	if(ordRmk=="None"){
+	if(ordRmk=="None" || ordRmk=="undefined" || ordRmk==null){
 		localStorage.ordRemarks="";
 	}else{
 		localStorage.ordRemarks=ordRmk;
 	}
 	
 	
-	var show_total="Total Order Amount CPP: "+localStorage.total_value+"TK  Discount: "+localStorage.ordDiscount +"Remarks: "+localStorage.ordRemarks +"<font style='font-size:11px'>TP:"+(localStorage.total_tp-localStorage.ordDiscount)+" TK" +"</font>" //</br> <font style='font-size:11px'> Regular Discount Applicable on TP : "+total_without_promo_show.toFixed(2) + " TK </font>
+	var show_total="Total Order Amount CPP: "+localStorage.total_value+"TK  Discount: "+localStorage.ordDiscount +" TK Remarks: "+localStorage.ordRemarks +" TP:"+(localStorage.total_tp-localStorage.ordDiscount)+" TK" //</br> <font style='font-size:11px'> Regular Discount Applicable on TP : "+total_without_promo_show.toFixed(2) + " TK </font>
 	localStorage.show_total=show_total;
 	
 	
@@ -4684,6 +4688,7 @@ function cart_ok(){
 }
 function cancel_cart() {
 	$(".orderProduct").val('');
+	$("#dist_adj").val('');
 	$("#ord_disc").val('');
 	$("#ord_rmk").val('');
 	
@@ -4694,7 +4699,7 @@ function cancel_cart() {
 	
 	$("#item_combo_id").val('');
 	
-	
+	$("#dist_adj").val('+');
 	$("#ord_disc").val('0');
 	localStorage.ordDiscount=0;
 	localStorage.ordRemarks="";
@@ -9585,7 +9590,10 @@ function report_targer_vs_ach() {
 											rptStr+='<tr><td>Till Date Achiv.(%)</td><td>:</td><td>'+targetAchStr2[4]+'%</td></tr>';
 											rptStr+='<tr><td>Monthly Achiv.(%)</td><td>:</td><td>'+targetAchStr2[5]+'%</td></tr>';
 											rptStr+='<tr><td>Remaining Tgt.(In MT.)</td><td>:</td><td>'+targetAchStr2[6]+'</td></tr>';
-											rptStr+='<tr><td>Tgt/Day.(In MT.)</td><td>:</td><td>'+targetAchStr2[7]+'</td></tr>';
+											rptStr+='<tr><td>Asking Tgt/Day.(In MT.)</td><td>:</td><td>'+targetAchStr2[7]+'</td></tr>';
+											rptStr+='<tr><td>Monthly Tgt (In Rev.)</td><td>:</td><td>'+targetAchStr2[8]+'</td></tr>';
+											rptStr+='<tr><td>Monthly Achiv.(In Rev.)</td><td>:</td><td>'+targetAchStr2[9]+'</td></tr>';
+											rptStr+='<tr><td>Monthly Rev.Achiv.(%)</td><td>:</td><td>'+targetAchStr2[10]+'</td></tr>';
 										}
 																			
 								}
@@ -9630,10 +9638,13 @@ function report_targer_vs_ach_n() {
 	$("#myerror_s_report_target_ach1").text("");	
 	var rpt_year=$("#rpt_year").val();
 	var rpt_month=$("#rpt_month").val();
+	var rpt_from_date=$("#rpt_from_date").val();
+	var rpt_to_date=$("#rpt_to_date").val();
+	
 	if( rpt_year=="" || rpt_month=="" ){
 		$("#myerror_s_report_target_ach1").text("Required Year Month.");
 	}else{
-		window.location.href = localStorage.report_url+"report_home?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass+"&rpt_month="+rpt_month+"&rpt_year="+rpt_year;
+		window.location.href = localStorage.report_url+"report_home?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass+"&rpt_month="+rpt_month+"&rpt_year="+rpt_year+"&from_date="+rpt_from_date+"&to_date="+rpt_to_date;
 		}
 	
 }
@@ -13315,6 +13326,9 @@ function receive(){
 
 function delivery(){
 	window.location.href = localStorage.report_url+"print_manager_index?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass;
+	}
+function physical_stock(){
+	window.location.href = localStorage.report_url+"depot_physical_stock_index?cid="+localStorage.cid+"&rep_id="+localStorage.user_id+"&rep_pass="+localStorage.user_pass;
 	}
 
 
